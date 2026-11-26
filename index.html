@@ -696,6 +696,68 @@ input,select,textarea{max-width:100%;min-width:0}
 .repRow input{flex:1;padding:9px 10px!important;border-radius:9px;margin:0!important}
 .repRow small{color:var(--muted);white-space:nowrap}
 .repRow button{width:26px;height:26px;border-radius:50%;border:0;background:var(--red2);color:#fff;cursor:pointer;flex:none}
+/* route tabs */
+.rt{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--card)}
+.rtTabs{display:grid;grid-template-columns:repeat(3,1fr)}
+.rtTab{display:flex;align-items:center;gap:12px;padding:22px 24px;background:#17181b;border:0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);color:#cfcdd1;font:700 18px Manrope;cursor:pointer;text-align:left;position:relative;transition:.25s}
+.rtTab:last-child{border-right:0}
+.rtTab i{font-style:normal;font-size:12px;color:var(--red2);font-weight:800}
+.rtTab em{margin-left:auto;font-style:normal;color:var(--muted);font-size:20px;transition:.3s}
+.rtTab.on{background:var(--card);color:#fff}
+.rtTab.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--red2)}
+.rtTab.on em{color:var(--gold2);transform:rotate(-90deg)}
+.rtPane{display:none;grid-template-columns:1fr 1fr;gap:40px;padding:36px}
+.rtPane.on{display:grid;animation:pageIn .4s}
+.rtTag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);margin-bottom:22px}
+.rtL h3{font-size:clamp(24px,3vw,34px);line-height:1.15;margin-bottom:16px}
+.rtL p{color:var(--muted);max-width:420px}
+.rtR>b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#d8d6da;margin-bottom:8px}
+.rtR ul{list-style:none}
+.rtR li{padding:12px 0 12px 26px;border-bottom:1px solid var(--line);position:relative;color:#e0dee2}
+.rtR li::before{content:"✓";position:absolute;left:0;color:var(--red2);font-weight:800}
+.rtBtns{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:24px}
+.rtAsk{font-weight:700;color:#e0dee2}
+.rtAsk:hover{color:var(--gold2)}
+@media(max-width:800px){.rtTabs{grid-template-columns:1fr}.rtTab{border-right:0;padding:16px 18px;font-size:16px}.rtPane{grid-template-columns:1fr;gap:24px;padding:22px}}
+/* service page */
+.svH{position:relative;overflow:hidden;padding:130px 0 70px;background:radial-gradient(ellipse 60% 70% at 85% 100%,rgba(179,34,46,.25),transparent 70%),linear-gradient(180deg,#121315,#17181b);border-bottom:1px solid rgba(179,34,46,.45)}
+.svHG{position:relative;z-index:2;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end}
+@media(max-width:900px){.svHG{grid-template-columns:1fr}}
+.svH h1{font-size:clamp(32px,5vw,60px);line-height:1.05;margin:6px 0 18px}
+.svSub{color:var(--muted);font-size:17px;max-width:620px;margin-bottom:26px}
+.svTrust{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-top:28px}
+@media(max-width:600px){.svTrust{grid-template-columns:1fr}}
+.svTrust li{padding-left:24px;position:relative;color:#d4d2d6;font-size:15px}
+.svTrust li::before{content:"✓";position:absolute;left:0;color:var(--red2);font-weight:800}
+.svSteps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.svSteps div{background:rgba(23,24,27,.8);border:1px solid var(--line);border-radius:18px;padding:18px}
+.svSteps b{display:block;font:800 26px Unbounded;color:transparent;-webkit-text-stroke:1px var(--gold2)}
+.svSteps span{font-weight:700}
+.svP{color:#cfcdd1;margin-bottom:14px}
+.svForm{display:grid;gap:12px}
+.svForm h3{font-size:22px}
+.svAlt{color:var(--muted);text-align:center}
+.svAlt a{color:#fff;font-weight:700}
+.svIncl{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.svIncl{grid-template-columns:1fr}}
+.svIncl li{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-weight:600}
+.svIncl i{font-style:normal;font:800 14px Unbounded;color:var(--red2);min-width:28px}
+.svPay{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:800px){.svPay{grid-template-columns:1fr}}
+.svPay div{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--red2);border-radius:20px;padding:24px}
+.svPay b{font-size:17px;display:block;margin-bottom:8px}
+.svPay p{color:var(--muted)}
+.svGeo{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:900px){.svGeo{grid-template-columns:1fr 1fr}}
+.svGeo div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.svGeo span{font-size:30px}
+.svGeo h3{font-size:17px;margin:10px 0 6px}
+.svGeo p{color:var(--muted);font-size:14px}
+.svOther{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.svOther{grid-template-columns:1fr}}
+.svOther a{display:flex;align-items:center;justify-content:space-between;padding:24px 26px;border-radius:20px;background:linear-gradient(120deg,#1d1e22,#2a1418);border:1px solid #4a1a20;font:700 18px Unbounded;transition:.3s}
+.svOther a:hover{border-color:var(--gold)}
+.svOther em{font-style:normal;color:var(--gold2)}
 /* faq */
 .faq{max-width:860px;margin:0 auto}
 .q{border-bottom:1px solid var(--line)}
@@ -893,29 +955,13 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);background:#0e0e10;c
     <div class="crumbs"><a href="#home">Головна</a> / <span>Послуги</span></div>
     <h1>Послуги <em>4AUTO</em></h1>
     <p>Підбір, перевірка, доставка й оформлення авто з Європи та Канади — окремо або повним циклом.</p>
-    <div class="regionSw"><button class="on" data-reg="all">Усі напрямки</button><button data-reg="eu">🇪🇺 Європа</button><button data-reg="ca">🇨🇦 Канада</button></div>
     <div class="heroBtns" style="margin-top:26px"><a href="#svcRoutes" class="btn btn-gold" data-scroll>Обрати послугу ↓</a><a href="https://t.me/+wmlpgPL8U2g3NDI6" target="_blank" rel="noopener" class="btn btn-ghost">Порадьте формат ✈</a></div>
   </div></div>
 
   <section id="svcRoutes">
     <div class="wrap">
-      <div class="secHead reveal"><div><div class="kicker">01 · Повний супровід</div><h2>Оберіть напрямок</h2></div><p>Ведемо угоду від першого дзвінка до передачі ключів — ви отримуєте готове авто.</p></div>
-      <div class="routes" id="routes"><div class="route reveal" data-region="eu">
-  <span class="rTag">Європа → Україна</span><h3>Пригін авто з ЄС «під ключ»</h3><p>Знаходимо, перевіряємо і привозимо авто з Європи — вам лишається забрати ключі в Україні.</p>
-  <div class="rList"><b>Що беремо на себе</b><ul><li>Пошук варіантів під ваш бюджет</li><li>Перевірка історії та технічного стану</li><li>Викуп, доставка і страхування</li><li>Розмитнення, сертифікація, облік</li></ul></div>
-  <div class="rMore"><ul><li>Оплата поетапно за договором</li><li>Фото- й відеозвіт на кожному кроці</li><li>Остаточна вартість відома до купівлі</li></ul></div>
-  <div class="rBtns"><button type="button" class="btn btn-ghost rToggle">Умови співпраці</button><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: Пригін авто з ЄС «під ключ»">Обговорити запит</a></div>
-</div><div class="route reveal" data-region="eu">
-  <span class="rTag">Для тих, хто живе в ЄС</span><h3>Купівля авто на території Європи</h3><p>Допомагаємо купити авто для користування в Європі: від пошуку до оформлення на вас.</p>
-  <div class="rList"><b>Що беремо на себе</b><ul><li>Підбір у вашій країні або сусідніх</li><li>Огляд і переговори з продавцем</li><li>Перевірка документів і VIN</li><li>Супровід угоди та реєстрації</li></ul></div>
-  <div class="rMore"><ul><li>Працюємо з дилерами й приватними продавцями</li><li>Консультація українською</li><li>Прозорі умови в договорі</li></ul></div>
-  <div class="rBtns"><button type="button" class="btn btn-ghost rToggle">Умови співпраці</button><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: Купівля авто на території Європи">Обговорити запит</a></div>
-</div><div class="route reveal" data-region="ca">
-  <span class="rTag">Канада → Україна</span><h3>Авто з Канади під замовлення</h3><p>Підбираємо авто на канадських аукціонах і у дилерів, привозимо морем і оформлюємо в Україні.</p>
-  <div class="rList"><b>Що беремо на себе</b><ul><li>Аналіз лотів і історії авто</li><li>Ставки та викуп від нашого імені</li><li>Морська логістика й доставка</li><li>Митне оформлення і реєстрація</li></ul></div>
-  <div class="rMore"><ul><li>Розрахунок усіх витрат до ставки</li><li>Відстеження контейнера</li><li>Підготовка документів для митниці</li></ul></div>
-  <div class="rBtns"><button type="button" class="btn btn-ghost rToggle">Умови співпраці</button><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: Авто з Канади під замовлення">Обговорити запит</a></div>
-</div></div>
+      <div class="secHead reveal"><div><div class="kicker">01 · Повний супровід</div><h2>Обираєте напрямок —<br><em>ми ведемо до ключів</em></h2></div><p>Скажіть, де хочете купити авто і де будете ним користуватися — підкажемо найвигідніший шлях.</p></div>
+      <div class="rt reveal"><div class="rtTabs"><button type="button" class="rtTab on" data-rt="eu"><i>01</i><span>Авто в Україну</span><em>↘</em></button><button type="button" class="rtTab" data-rt="buy-eu"><i>02</i><span>Купівля в ЄС</span><em>↘</em></button><button type="button" class="rtTab" data-rt="ca"><i>03</i><span>Авто з Канади</span><em>↘</em></button></div><div class="rtPane on" data-rp="eu"><div class="rtL"><span class="rtTag">⚿ Європа → Україна</span><h3>Пригін авто з ЄС «під ключ»</h3><p>Для тих, хто хоче їздити на перевіреному європейському авто в Україні — без поїздок за кордон і клопоту з документами.</p></div><div class="rtR"><b>Що беремо на себе</b><ul><li>Пошук варіантів під ваш бюджет</li><li>Перевірка історії та огляд наживо</li><li>Логістика, розмитнення, сертифікація</li><li>Передача авто з українськими номерами</li></ul><div class="rtBtns"><a href="#svc-eu" class="btn btn-gold">Деталі та умови ↗</a><a href="#contacts" class="rtAsk" data-lead data-order="Послуга: Пригін авто з ЄС «під ключ»">Обговорити запит 💬</a></div></div></div><div class="rtPane" data-rp="buy-eu"><div class="rtL"><span class="rtTag">⚿ Для тих, хто живе в Європі</span><h3>Купівля авто на території ЄС</h3><p>Допоможемо придбати авто для користування в країні, де ви зараз живете: від пошуку до оформлення на ваше ім’я.</p></div><div class="rtR"><b>Що беремо на себе</b><ul><li>Підбір у вашій країні або сусідніх</li><li>Огляд і переговори з продавцем</li><li>Перевірка VIN і документів</li><li>Супровід угоди та реєстрації</li></ul><div class="rtBtns"><a href="#svc-buy-eu" class="btn btn-gold">Деталі та умови ↗</a><a href="#contacts" class="rtAsk" data-lead data-order="Послуга: Купівля авто на території ЄС">Обговорити запит 💬</a></div></div></div><div class="rtPane" data-rp="ca"><div class="rtL"><span class="rtTag">⚿ Канада → Україна</span><h3>Авто з Канади під замовлення</h3><p>Підбираємо авто на канадських аукціонах і у дилерів, організовуємо морську доставку та оформлення в Україні.</p></div><div class="rtR"><b>Що беремо на себе</b><ul><li>Аналіз лотів та історії авто</li><li>Ставки й викуп від нашого імені</li><li>Морська логістика до України</li><li>Митне оформлення і реєстрація</li></ul><div class="rtBtns"><a href="#svc-ca" class="btn btn-gold">Деталі та умови ↗</a><a href="#contacts" class="rtAsk" data-lead data-order="Послуга: Авто з Канади під замовлення">Обговорити запит 💬</a></div></div></div></div>
       <a class="auctionBanner reveal" href="https://t.me/+wmlpgPL8U2g3NDI6" target="_blank" rel="noopener"><span>⚑</span><div><b>Лізингові аукціони щотижня</b><small>Свіжі лоти та результати торгів — у нашому Telegram-каналі</small></div><em>↗</em></a>
     </div>
   </section>
@@ -950,6 +996,9 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);background:#0e0e10;c
 
 
 </main>
+
+<!-- ================= SERVICE DETAIL ================= -->
+<main class="page" data-page="svc"><div id="svcPage"></div></main>
 
 <!-- ================= ABOUT ================= -->
 <main class="page" data-page="about">
@@ -1187,7 +1236,7 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);background:#0e0e10;c
   <div class="wrap">
     <div class="fGrid">
       <div><a href="#home" style="display:inline-block;margin-bottom:16px" id="fLogo"></a><p>Пригін авто з Європи під ключ. Понад 15 років на ринку, 1000+ пригнаних автомобілів.</p><div class="socMini"><a href="https://t.me/+wmlpgPL8U2g3NDI6" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.8 15.6l-.4 5.3c.6 0 .8-.3 1.1-.6l2.7-2.5 5.5 4c1 .6 1.7.3 2-.9l3.6-16.8c.3-1.5-.6-2.1-1.6-1.7L1.6 10.3C.1 10.9.1 11.7 1.3 12.1l5.4 1.7L19.3 6c.6-.4 1.1-.2.7.2z"/></svg></a><a href="https://www.instagram.com/4auto_radyvyliv" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://youtube.com/@4auto_vlad" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9l5.8 3.1z"/></svg></a></div></div>
-      <div><h4 class="fh">Послуги</h4><ul class="fList"><li><a href="#services">Авто під ключ</a></li><li><a href="#services">Підбір авто в Європі</a></li><li><a href="#services">Авто з Канади</a></li><li><a href="#services">Лізингові аукціони</a></li><li><a href="#services">Розмитнення</a></li><li><a href="#catalog">Каталог авто</a></li></ul></div>
+      <div><h4 class="fh">Послуги</h4><ul class="fList"><li><a href="#svc-eu">Авто під ключ</a></li><li><a href="#services">Підбір авто в Європі</a></li><li><a href="#svc-ca">Авто з Канади</a></li><li><a href="#services">Лізингові аукціони</a></li><li><a href="#services">Розмитнення</a></li><li><a href="#catalog">Каталог авто</a></li></ul></div>
       <div><h4 class="fh">Сторінки</h4><ul class="fList"><li><a href="#about">Про нас</a></li><li><a href="#reviews">Відгуки</a></li><li><a href="#faq">Питання</a></li><li><a href="#contacts">Контакти</a></li></ul></div>
     </div>
     <h4 class="fh">Контакти</h4>
@@ -1594,8 +1643,6 @@ function whoosh(){
 }
 
 /* ================= SERVICES PAGE ================= */
-document.querySelectorAll('.rToggle').forEach(b=>b.onclick=()=>{const r=b.closest('.route');const o=r.classList.toggle('open');b.textContent=o?'Згорнути умови':'Умови співпраці'});
-document.querySelectorAll('.regionSw button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.regionSw button').forEach(x=>x.classList.toggle('on',x===b));const reg=b.dataset.reg;document.querySelectorAll('.route').forEach(r=>r.classList.toggle('dim',reg!=='all'&&r.dataset.region!==reg))});
 document.querySelector('[data-scroll]').onclick=e=>{e.preventDefault();document.getElementById('svcRoutes').scrollIntoView({behavior:'smooth'})};
 document.querySelectorAll('.calcF').forEach(cf=>{
   const sec=cf.closest('section'),o=k=>sec.querySelector(`[data-o="${k}"]`);
@@ -1606,21 +1653,65 @@ document.querySelectorAll('.calcF').forEach(cf=>{
   cf.addEventListener('submit',e=>{e.preventDefault();handleForm(cf,()=>{upd();const m=cf.querySelector('.fMsg');m.textContent='✓ Дякуємо! Надішлемо розрахунок найближчим часом.';m.className='fMsg on good'})});
 });
 
+/* ================= SERVICE PAGES ================= */
+const SVC={"eu": {"title": "Авто з Європи під ключ", "crumb": "Авто з Європи під ключ", "sub": "Працюємо за договором: узгоджуємо параметри, знаходимо й перевіряємо авто, привозимо в Україну та передаємо вам із номерами.", "trust": ["Усі умови та вартість — у договорі", "Фото, відео та звіти з історії авто", "Торгуємося з продавцем на вашу користь", "Доставка, розмитнення, реєстрація — на нас"], "steps": ["Пошук", "Огляд", "Доставка", "Ключі у вас"], "defH": "Як працює формат «під ключ»", "def": ["Ви не шукаєте авто самостійно, не їдете за кордон і не розбираєтеся з митницею. Ми проводимо угоду від першої розмови до моменту, коли ви сідаєте за кермо авто з українською реєстрацією.", "Підсумкова вартість складається з чотирьох частин: ціна самого авто, логістика до України, митні платежі та наша винагорода за підбір. Усе розписуємо наперед — до того, як ви приймаєте рішення про купівлю."], "incl": ["Підписання договору з фіксацією умов", "Пошук авто під ваш бюджет і вимоги", "Перевірка VIN, документів та сервісної історії", "Платні звіти з баз даних (CarFax, AutoCheck тощо)", "Огляд авто наживо нашим фахівцем", "Переговори з продавцем щодо ціни", "Супровід оплати та повернення ПДВ, де можливо", "Доставка, розмитнення та сертифікація", "Реєстрація в сервісному центрі МВС", "Підготовка авто перед передачею"], "proc": [["Обговорюємо запит", "Бюджет, марка, рік, пробіг, комплектація — фіксуємо ваші пріоритети."], ["Укладаємо договір", "Прописуємо умови, терміни та вартість наших послуг."], ["Шукаємо варіанти", "Переглядаємо пропозиції дилерів і приватних продавців у ЄС."], ["Перевіряємо історію", "Звіти з баз, сервісні записи, аналіз документів."], ["Оглядаємо наживо", "Діагностика, товщиномір, тест-драйв, фото- і відеозвіт."], ["Ви приймаєте рішення", "Надсилаємо всі матеріали — ви обираєте, ми торгуємося."], ["Бронюємо авто", "Вносимо завдаток продавцю, щоб авто не продали іншому."], ["Викуповуємо", "Оплата, оформлення експортних документів."], ["Доставляємо", "Автовоз до України зі страхуванням вантажу."], ["Погоджуємо терміни", "Тримаємо вас у курсі, де зараз авто."], ["Розмитнюємо", "Митне оформлення та сертифікат відповідності."], ["Передаємо ключі", "Реєстрація в ТСЦ і передача авто з номерами."]], "geoH": "Де ми шукаємо авто", "geo": [["🇩🇪", "Німеччина", "Найбільший ринок вживаних авто в Європі: великий вибір, прозора сервісна історія."], ["🇳🇱", "Нідерланди", "Доглянуті авто з невеликим пробігом і повною документацією."], ["🇧🇪", "Бельгія", "Вигідні ціни на дизельні та корпоративні авто з лізингу."], ["🇵🇱", "Польща", "Близька логістика й швидша доставка до України."]], "faq": [["Скільки коштують ваші послуги?", "Вартість залежить від ціни авто та обсягу робіт. Точну суму фіксуємо в договорі ще до початку пошуку."], ["Скільки часу займає підбір?", "Зазвичай від кількох днів до 2–3 тижнів — залежно від того, наскільки рідкісне авто ви шукаєте."], ["Чи можна привезти авто, яке я знайшов сам?", "Так. Перевіримо його, оглянемо наживо і, якщо все гаразд, організуємо купівлю та доставку."], ["Як відбувається оплата?", "Поетапно: послуги за договором, далі оплата авто продавцю, логістика і митні платежі — з усіма документами."], ["Які гарантії, що авто без проблем?", "Ми перевіряємо історію з кількох джерел і оглядаємо авто наживо. Не купуємо авто з прихованими ДТП чи скрученим пробігом."], ["З яких країн привозите?", "Переважно з Німеччини, Нідерландів, Бельгії та Польщі, за потреби — з інших країн ЄС."]]}, "buy-eu": {"title": "Купівля авто в Європі", "crumb": "Купівля авто в ЄС", "sub": "Для тих, хто живе в Європі: знайдемо, перевіримо та допоможемо оформити авто на вас у вашій країні — без мовних бар’єрів і ризиків.", "trust": ["Консультація українською", "Перевірка документів і VIN", "Переговори з продавцем", "Супровід реєстрації в ЄС"], "steps": ["Запит", "Підбір", "Огляд", "Оформлення"], "defH": "Кому підходить ця послуга", "def": ["Ви живете в одній із країн ЄС і хочете купити авто для себе, але не знаєте місцевого ринку, мови чи підводних каменів угоди. Ми беремо пошук і перевірку на себе, а ви отримуєте авто, оформлене на ваше ім’я.", "Вартість залежить від обсягу роботи: лише перевірка конкретного авто, повний підбір чи підбір із супроводом реєстрації. Усе погоджуємо заздалегідь."], "incl": ["Консультація щодо бюджету та моделей", "Пошук варіантів у вашій країні та сусідніх", "Перевірка історії та документів", "Огляд авто наживо", "Переговори з продавцем", "Перевірка договору купівлі-продажу", "Допомога з оплатою та страхуванням", "Супровід реєстрації в країні проживання"], "proc": [["Знайомимося з запитом", "Дізнаємося, де ви живете, яке авто потрібне і який бюджет."], ["Фіксуємо умови", "Узгоджуємо формат послуги та вартість."], ["Шукаємо авто", "Відбираємо найкращі пропозиції поблизу вас."], ["Перевіряємо", "Історія, документи, огляд і тест-драйв."], ["Домовляємося з продавцем", "Торгуємося і перевіряємо договір."], ["Оформлюємо на вас", "Допомагаємо з оплатою, страховкою та реєстрацією."]], "geoH": "Де допомагаємо", "geo": [["🇩🇪", "Німеччина", "Повний супровід угоди та реєстрації."], ["🇵🇱", "Польща", "Підбір і перевірка, допомога з документами."], ["🇳🇱", "Нідерланди", "Огляд та переговори з дилерами."], ["🇨🇿", "Чехія", "Підбір і перевірка авто на місці."]], "faq": [["Ви працюєте лише в Німеччині?", "Ні, допомагаємо в різних країнах ЄС. Напишіть, де ви живете — підкажемо, що можемо зробити саме там."], ["Чи можна лише перевірити авто, яке я знайшов?", "Так, можна замовити окремо перевірку історії та огляд конкретного авто."], ["Хто оформлює авто?", "Авто оформлюється на вас. Ми допомагаємо з документами та супроводжуємо процес."], ["Скільки це коштує?", "Залежить від формату — від разової перевірки до повного супроводу. Вартість фіксуємо до старту."]]}, "ca": {"title": "Авто з Канади під замовлення", "crumb": "Авто з Канади", "sub": "Підбираємо авто на канадських аукціонах і у дилерів, викуповуємо, доставляємо морем та оформлюємо в Україні.", "trust": ["Розрахунок усіх витрат до ставки", "Перевірка історії кожного лота", "Морська логістика з відстеженням", "Розмитнення та реєстрація в Україні"], "steps": ["Лот", "Викуп", "Море", "Ключі у вас"], "defH": "Чому авто з Канади", "def": ["Канадський ринок пропонує великий вибір авто — особливо позашляховиків, пікапів і кросоверів — з прозорою історією та у комплектаціях, які рідко трапляються в Європі.", "До старту розраховуємо повну вартість: ціна лота й аукціонні збори, доставка до порту, морська логістика, митні платежі та наша винагорода. Ставку робимо лише в межах узгодженого бюджету."], "incl": ["Консультація та підбір моделей", "Аналіз лотів на аукціонах і у дилерів", "Перевірка історії авто", "Розрахунок повної вартості до ставки", "Ставки та викуп від нашого імені", "Доставка до порту та морське перевезення", "Відстеження контейнера", "Митне оформлення та сертифікація", "Реєстрація в Україні"], "proc": [["Обговорюємо запит", "Модель, бюджет, допустимий стан авто."], ["Укладаємо договір", "Фіксуємо умови та вартість послуг."], ["Підбираємо лоти", "Аналізуємо фото, історію та документи."], ["Рахуємо бюджет", "Повна вартість до ставки — без сюрпризів."], ["Робимо ставку", "Купуємо в межах погодженої суми."], ["Доставляємо до порту", "Автовоз до морського порту відправлення."], ["Морська доставка", "Контейнер до Європи з відстеженням."], ["Розмитнення", "Оформлення та сертифікація в Україні."], ["Передаємо ключі", "Реєстрація і передача авто вам."]], "geoH": "Звідки привозимо", "geo": [["🇨🇦", "Онтаріо", "Найбільший вибір лотів і дилерів."], ["🇨🇦", "Квебек", "Багато кросоверів і позашляховиків."], ["🇨🇦", "Альберта", "Пікапи та повнопривідні авто."], ["🇨🇦", "Британська Колумбія", "Доглянуті авто з м’яким кліматом."]], "faq": [["Скільки часу займає доставка з Канади?", "Здебільшого кілька тижнів — залежно від порту відправлення та розкладу суден. Точні терміни повідомляємо після викупу."], ["Чи можна купити авто після ДТП?", "Так, якщо пошкодження зрозумілі й ремонт виправданий. Перед ставкою детально пояснюємо ризики та вартість відновлення."], ["Як рахується підсумкова ціна?", "Ціна лота, збори аукціону, доставка, митні платежі та наші послуги. Все рахуємо до ставки."], ["Що буде, якщо ставка не виграє?", "Шукаємо наступний підходящий лот — ваш бюджет і умови не змінюються."]]}};
+function renderSvc(k){const s=SVC[k];if(!s)return false;
+  const tg=`https://t.me/+wmlpgPL8U2g3NDI6`;
+  document.getElementById('svcPage').innerHTML=`
+  <section class="svH grid"><div class="trails" data-trails="0"></div><div class="wrap svHG">
+    <div><div class="crumbs"><a href="#services">Послуги</a> / <span>${s.crumb}</span></div>
+      <h1>${s.title.replace(/(під ключ|в Європі|з Канади)/,'<em>$1</em>')}</h1><p class="svSub">${s.sub}</p>
+      <div class="heroBtns"><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: ${s.title}">Отримати розрахунок</a><a href="#catalog" class="btn btn-ghost">Авто в наявності</a><a href="${tg}" target="_blank" rel="noopener" class="btn btn-ghost">✈ Telegram</a></div>
+      <ul class="svTrust">${s.trust.map(t=>`<li>${t}</li>`).join('')}</ul></div>
+    <div class="svSteps">${s.steps.map((t,i)=>`<div><b>0${i+1}</b><span>${t}</span></div>`).join('')}</div>
+  </div></section>
+  <section class="alt"><div class="wrap two" style="align-items:start">
+    <div class="reveal"><div class="kicker">Про послугу</div><h2 style="margin-bottom:20px">${s.defH}</h2>${s.def.map(p=>`<p class="svP">${p}</p>`).join('')}</div>
+    <form class="svForm reveal" data-svcform><h3>Запит на підбір</h3><p class="svP">Залиште контакти — передзвонимо протягом 15 хвилин.</p>
+      <input name="name" required placeholder="Ваше ім'я"><input name="phone" required type="tel" inputmode="tel" placeholder="+380 __ ___ __ __"><textarea name="comment" rows="2" placeholder="Яке авто шукаєте? (необов'язково)"></textarea><input type="hidden" name="model" value="Послуга: ${s.title}">
+      <div class="fMsg"></div><button class="btn btn-gold">Надіслати запит</button><small class="svAlt">або телефонуйте: <a href="tel:+380938892154">+38 (093) 889-21-54</a></small></form>
+  </div></section>
+  <section><div class="wrap"><div class="secHead reveal"><div><div class="kicker">Що входить</div><h2>Що ви отримуєте</h2></div></div>
+    <ul class="svIncl">${s.incl.map((t,i)=>`<li class="reveal"><i>${String(i+1).padStart(2,'0')}</i>${t}</li>`).join('')}</ul></div></section>
+  <section class="alt"><div class="wrap two" style="align-items:start">
+    <div class="reveal" style="position:sticky;top:110px"><div class="kicker">${s.proc.length} етапів</div><h2>Як проходить<br><em>купівля</em></h2><p class="lead" style="margin-top:18px">На кожному етапі ви знаєте, що відбувається з вашим авто.</p></div>
+    <div class="timeline">${s.proc.map((p,i)=>`<div class="tl reveal"><b>${String(i+1).padStart(2,'0')}</b><div><h3>${p[0]}</h3><p>${p[1]}</p></div></div>`).join('')}</div></div></section>
+  <section><div class="wrap"><div class="secHead reveal"><div><div class="kicker">Вартість</div><h2>Оплата та вартість</h2></div></div>
+    <div class="svPay"><div class="reveal"><b>Прозорий розрахунок</b><p>Повну вартість розписуємо до старту: авто, логістика, мито, наші послуги.</p></div><div class="reveal"><b>Поетапна оплата</b><p>Платите частинами за договором — лише за виконані етапи.</p></div><div class="reveal"><b>Усі документи</b><p>Кожен платіж підтверджений рахунком чи квитанцією.</p></div></div>
+    <div class="center reveal"><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: ${s.title} — розрахунок">Отримати персональний розрахунок</a></div></div></section>
+  <section class="alt"><div class="wrap"><div class="secHead reveal"><div><div class="kicker">Географія</div><h2>${s.geoH}</h2></div></div>
+    <div class="svGeo">${s.geo.map(g=>`<div class="reveal"><span>${g[0]}</span><h3>${g[1]}</h3><p>${g[2]}</p></div>`).join('')}</div></div></section>
+  <section><div class="wrap"><div class="cta reveal"><div><h2>Готові почати?</h2><p>Розкажіть, яке авто шукаєте — підготуємо перші варіанти.</p></div><div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: ${s.title}">Залишити заявку</a><a href="tel:+380938892154" class="btn btn-ghost">📞 Подзвонити</a></div></div></div></section>
+  <section class="alt"><div class="wrap"><div class="secHead reveal" style="justify-content:center;text-align:center"><div><div class="kicker">FAQ</div><h2>Часті запитання</h2></div></div>
+    <div class="faq">${s.faq.map(f=>`<div class="q reveal"><button type="button">${f[0]}<span>+</span></button><div class="a"><p>${f[1]}</p></div></div>`).join('')}</div></div></section>
+  <section><div class="wrap"><div class="secHead reveal"><div><div class="kicker">Інші напрямки</div><h2>Оберіть свій маршрут</h2></div></div>
+    <div class="svOther">${Object.keys(SVC).filter(x=>x!==k).map(x=>`<a href="#svc-${x}" class="reveal"><b>${SVC[x].title}</b><em>↗</em></a>`).join('')}</div></div></section>`;
+  const pg=document.getElementById('svcPage');
+  pg.querySelectorAll('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,a=q.querySelector('.a'),o=q.classList.toggle('open');a.style.maxHeight=o?a.scrollHeight+'px':0});
+  pg.querySelectorAll('input[type=tel]').forEach(maskPhone);
+  const sf=pg.querySelector('[data-svcform]');sf.addEventListener('submit',e=>{e.preventDefault();handleForm(sf,()=>{const m=sf.querySelector('.fMsg');m.textContent='✓ Дякуємо! Передзвонимо найближчим часом.';m.className='fMsg on good'})});
+  document.title=s.title+' — 4AUTO';
+  return true;
+}
+/* tabs on services page */
+document.querySelectorAll('.rtTab').forEach(b=>b.onclick=()=>{const k=b.dataset.rt;document.querySelectorAll('.rtTab').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.rtPane').forEach(p=>p.classList.toggle('on',p.dataset.rp===k))});
+
 /* ================= ROUTER ================= */
 const titles={home:'4AUTO — Авто з Європи під ключ',catalog:'Каталог авто — 4AUTO',services:'Послуги — 4AUTO',about:'Про нас — 4AUTO',admin:'Адмін-панель — 4AUTO',reviews:'Відгуки — 4AUTO',faq:'Питання та відповіді — 4AUTO',contacts:'Контакти — 4AUTO'};
-function currentPage(){const h=location.hash.slice(1);return h.startsWith('car-')?'car':(titles[h]?h:'home')}
+function currentPage(){const h=location.hash.slice(1);return h.startsWith('car-')?'car':h.startsWith('svc-')&&SVC[h.slice(4)]?'svc':(titles[h]?h:'home')}
 let first=true;
 function route(){
   const h=location.hash.slice(1);let page=currentPage();
   if(page==='car'&&!renderCar(h.slice(4))){if(carsLoaded)page='catalog';else{document.getElementById('carCrumb').textContent='…';document.getElementById('carDetail').innerHTML='<div class="empty">Завантаження…</div>'}}
+  if(page==='svc')renderSvc(h.slice(4));
   if(page==='catalog')renderCatalog();
   if(page==='contacts'&&orderModel){document.getElementById('fModel').value=orderModel;orderModel=''}
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.dataset.page===page));
   if(typeof closeLead==='function')closeLead();
   if(typeof closeLb==='function'&&!document.getElementById('lb').hidden)closeLb();
   document.body.classList.toggle('adminMode',page==='admin');if(page==='admin')admOpen();
-  document.querySelectorAll('#menu a,#drawer a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+(page==='car'?'catalog':page)&&!a.classList.contains('btn')));
-  document.title=page==='car'?document.getElementById('carCrumb').textContent+' — 4AUTO':titles[page];
+  document.querySelectorAll('#menu a,#drawer a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+(page==='car'?'catalog':page==='svc'?'services':page)&&!a.classList.contains('btn')));
+  if(page!=='svc')document.title=page==='car'?document.getElementById('carCrumb').textContent+' — 4AUTO':titles[page];
   document.getElementById('drawer').classList.remove('open');
   window.scrollTo(0,0);
   nav.classList.toggle('solid',false);
