@@ -724,7 +724,8 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);background:#0e0e10;c
 .fGrid h4{color:#fff;font:600 14px Unbounded;margin-bottom:14px}
 .fGrid a{display:block;padding:4px 0}
 .fGrid a:hover{color:var(--gold2)}
-.fBottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px;font-size:13px}
+.fBottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;padding-top:24px;font-size:13px}
+.fBottom::before{content:"";position:absolute;top:0;left:50%;width:100vw;transform:translateX(-50%);height:1px;background:var(--line)}
 .tgFloat{position:fixed;right:20px;bottom:20px;z-index:40;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--red2),var(--red));box-shadow:0 10px 30px -8px rgba(179,34,46,.9);transition:.25s}
 .tgFloat:hover{transform:scale(1.08)}
 .tgFloat::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--red2);animation:pulse 2.2s infinite}
