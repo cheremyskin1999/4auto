@@ -779,6 +779,20 @@ input,select,textarea{max-width:100%;min-width:0}
 .prcNotes{list-style:none;display:grid;gap:10px;margin-top:18px}
 .prcNotes li{padding-left:28px;position:relative;color:#cfcdd1;font-size:14.5px}
 .prcNotes li::before{content:"i";position:absolute;left:0;top:1px;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--red2);color:var(--red2);font:800 11px/15px Manrope;text-align:center}
+/* extra costs */
+.extra{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.exBtn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:22px 26px;background:none;border:0;color:var(--gold2);font:700 18px Manrope,system-ui,sans-serif;cursor:pointer;text-align:left}
+.exBtn:focus{outline:none}
+.exBtn i{font-style:normal;font-size:22px;color:var(--red2);transition:.3s}
+.extra.open .exBtn{border-bottom:1px solid var(--line)}
+.extra.open .exBtn i{transform:rotate(180deg)}
+.exBody{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.exGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;padding:24px 26px 6px}
+@media(max-width:700px){.exGrid{grid-template-columns:1fr}}
+.exGrid div{border-left:2px solid var(--red2);padding-left:16px}
+.exGrid b{display:block;margin-bottom:4px}
+.exGrid p{color:var(--muted);font-size:14.5px}
+.exNote{margin:18px 26px 24px;padding:14px 16px;border-radius:14px;background:rgba(201,161,90,.08);border:1px dashed rgba(201,161,90,.4);color:#d8d0bf;font-size:14px}
 /* faq */
 .faq{max-width:860px;margin:0 auto}
 .q{border-bottom:1px solid var(--line)}
@@ -1704,7 +1718,9 @@ function renderSvc(k){const s=SVC[k];if(!s)return false;
       <div class="prcTbl"><div class="prcHd"><div><span>Вартість послуги «Авто під ключ»</span><h3>Залежить від вартості авто в Україні</h3></div><i class="prcIco"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7.5" width="27" height="17" rx="3"/><path d="M2.5 12a4.5 4.5 0 0 0 4.5-4.5M29.5 12A4.5 4.5 0 0 1 25 7.5M2.5 20A4.5 4.5 0 0 1 7 24.5M29.5 20a4.5 4.5 0 0 0-4.5 4.5"/><path d="M18.6 12.6c-.5-.8-1.5-1.3-2.6-1.3-1.5 0-2.7.9-2.7 2.2 0 2.9 5.6 1.6 5.6 4.6 0 1.3-1.3 2.3-2.9 2.3-1.2 0-2.3-.6-2.8-1.5M16 9.6v1.7M16 20.4v2"/></svg></i></div>
         <table><thead><tr><th>Авто до</th><th>Послуга</th></tr></thead><tbody>${[['10 000','600'],['15 000','700'],['20 000','800'],['30 000','900'],['40 000','1 000'],['50 000','1 100'],['60 000+','1 200+']].map(r=>`<tr><td>$${r[0]}</td><td>$${r[1]}</td></tr>`).join('')}</tbody></table>
         <ul class="prcNotes"><li>Вартість послуги «Пригін під ключ» визначаємо за цією сіткою — залежно від підсумкової вартості авто в Україні.</li><li>Один огляд авто наживо вже входить у ціну, якщо саме це авто ми купуємо.</li><li>Якщо після огляду авто не купуємо — витрати на виїзд погоджуємо заздалегідь (зазвичай $100–200).</li></ul>
-      </div></div>`:`<div class="svPay"><div class="reveal"><b>Прозорий розрахунок</b><p>Повну вартість розписуємо до старту: авто, логістика, мито, наші послуги.</p></div><div class="reveal"><b>Поетапна оплата</b><p>Платите частинами за договором — лише за виконані етапи.</p></div><div class="reveal"><b>Усі документи</b><p>Кожен платіж підтверджений рахунком чи квитанцією.</p></div></div>`}
+      </div></div><div class="extra reveal"><button type="button" class="exBtn" data-ex><span>Додаткові витрати: з чого складається бюджет</span><i>⌄</i></button>
+      <div class="exBody"><div class="exGrid"><div><b>Платні звіти</b><p>Зазвичай замовляємо два звіти: сервісну історію та перевірку на ДТП і пробіг. Орієнтовно $10 + $10 за одне авто.</p></div><div><b>Оплата авто готівкою</b><p>Викуп у валюті продавця: вартість авто плюс 1% від суми за переказ коштів у Європу.</p></div><div><b>Оплата через компанію в ЄС</b><p>Якщо авто викуповуємо через європейську компанію — зазвичай +2–3% від суми платежів. Передоплата від 50% (або повністю — за домовленістю).</p></div><div><b>Доставка</b><p>Орієнтовно $900–1 100 — залежить від країни, міста та розмірів авто.</p></div><div><b>Терміни доставки</b><p>Приблизно 7–14 днів залежно від країни та локації. Увесь цикл «під ключ» — 3–5 тижнів.</p></div><div><b>Експортне оформлення в ЄС</b><p>Орієнтовно $50. Готуємо документи, декларацію для перетину кордону та передаємо авто на митницю в Україні.</p></div><div><b>Сертифікація</b><p>Орієнтовно 2 500 грн.</p></div><div><b>Підготовка до видачі</b><p>За бажанням організуємо ТО, детейлінг і діагностику на СТО. Оплата напряму виконавцям — за фактом робіт.</p></div><div><b>Постановка на облік</b><p>Можна за дорученням, без вашої присутності. Перша реєстрація: 3–5% до пенсійного фонду + послуги сервісного центру МВС.</p></div></div>
+      <p class="exNote">✓ Завдаток повертаємо за вирахуванням 10%, якщо огляди авто ще не проводились. Якщо огляди наживо вже були — за вирахуванням 10% і фактичних витрат. Якщо авто вже заброньоване завдатком у Європі — завдаток не повертається.</p></div></div>`:`<div class="svPay"><div class="reveal"><b>Прозорий розрахунок</b><p>Повну вартість розписуємо до старту: авто, логістика, мито, наші послуги.</p></div><div class="reveal"><b>Поетапна оплата</b><p>Платите частинами за договором — лише за виконані етапи.</p></div><div class="reveal"><b>Усі документи</b><p>Кожен платіж підтверджений рахунком чи квитанцією.</p></div></div>`}
     <div class="center reveal"><a href="#contacts" class="btn btn-gold" data-lead data-order="Послуга: ${s.title} — розрахунок">Отримати персональний розрахунок</a></div></div></section>
   <section class="alt"><div class="wrap"><div class="secHead reveal"><div><div class="kicker">Географія</div><h2>${s.geoH}</h2></div></div>
     <div class="svGeo">${s.geo.map(g=>`<div class="reveal"><span>${g[0]}</span><h3>${g[1]}</h3><p>${g[2]}</p></div>`).join('')}</div></div></section>
@@ -1715,6 +1731,7 @@ function renderSvc(k){const s=SVC[k];if(!s)return false;
     <div class="svOther">${Object.keys(SVC).filter(x=>x!==k).map(x=>`<a href="#svc-${x}" class="reveal"><b>${SVC[x].title}</b><em>↗</em></a>`).join('')}</div></div></section>`;
   const pg=document.getElementById('svcPage');
   pg.querySelectorAll('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,a=q.querySelector('.a'),o=q.classList.toggle('open');a.style.maxHeight=o?a.scrollHeight+'px':0});
+  pg.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{const x=b.parentElement,bd=x.querySelector('.exBody'),o=x.classList.toggle('open');bd.style.maxHeight=o?bd.scrollHeight+'px':0});
   pg.querySelectorAll('input[type=tel]').forEach(maskPhone);
   const sf=pg.querySelector('[data-svcform]');sf.addEventListener('submit',e=>{e.preventDefault();handleForm(sf,()=>{const m=sf.querySelector('.fMsg');m.textContent='✓ Дякуємо! Передзвонимо найближчим часом.';m.className='fMsg on good'})});
   document.title=s.title+' — 4AUTO';
