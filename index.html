@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#111214">
+<script>try{if(localStorage.getItem("4auto_theme")==="light")document.documentElement.classList.add("light")}catch(e){}</script>
 <meta name="apple-mobile-web-app-title" content="4AUTO">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -794,6 +795,14 @@ input,select,textarea{max-width:100%;min-width:0}
 .exGrid b{display:block;margin-bottom:4px}
 .exGrid p{color:var(--muted);font-size:14.5px}
 .exNote{margin:18px 26px 24px;padding:14px 16px;border-radius:14px;background:rgba(201,161,90,.08);border:1px dashed rgba(201,161,90,.4);color:#d8d0bf;font-size:14px}
+/* theme toggle */
+.themeBtn{border-radius:14px;position:relative;overflow:hidden;color:var(--gold2)}
+.themeBtn svg{width:20px;height:20px;position:absolute;transition:transform .45s cubic-bezier(.3,1.4,.5,1),opacity .3s}
+.themeBtn .tSun{transform:translateY(26px) rotate(-90deg);opacity:0}
+html.light .themeBtn .tMoon{transform:translateY(-26px) rotate(90deg);opacity:0}
+html.light .themeBtn .tSun{transform:none;opacity:1}
+html.light .themeBtn{border-color:#d6d2ca;color:#c27a12}
+body.themeAnim,body.themeAnim *{transition:background-color .35s,color .35s,border-color .35s!important}
 /* faq */
 .faq{max-width:860px;margin:0 auto}
 .q{border-bottom:1px solid var(--line)}
@@ -829,6 +838,152 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);background:#0e0e10;c
 .tgFloat:hover{transform:scale(1.08)}
 .tgFloat::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--red2);animation:pulse 2.2s infinite}
 @keyframes pulse{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
+
+/* ========== LIGHT THEME (generated) ========== */
+html.light{--bg:#f6f4f0;--bg2:#efece6;--card:#ffffff;--line:#e2ded6;--text:#16171a;--muted:#6b6a70;--gold:#a8792a;--gold2:#9a6a1e;color-scheme:light}
+html.light body{background:var(--bg);color:var(--text)}
+html.light .btn-ghost{border:1px solid #d6d2ca}
+html.light nav.scrolled,html.light nav.solid{background:rgba(246,244,240,.9)}
+html.light .logoSvg{color:#16171a}
+html.light nav ul{color:#45464c}
+html.light nav ul a:hover,html.light nav ul a.active{color:#16171a}
+html.light .iconBtn{border:1px solid #d6d2ca}
+html.light #drawer{background:rgba(246,244,240,.98)}
+html.light /* ---------- HERO ---------- */
+#hero{background:radial-gradient(ellipse 70% 45% at 75% 85%,rgba(179,34,46,.28),transparent 70%),
+  radial-gradient(ellipse 45% 35% at 15% 15%,rgba(201,161,90,.10),transparent 70%),
+  linear-gradient(180deg,#f6f4f0 0%,#efece6 60%,#ebe7e0 100%)}
+html.light .grid::after{background:repeating-linear-gradient(90deg,rgba(0,0,0,.03) 0 1px,transparent 1px 90px)}
+html.light .road{background:linear-gradient(180deg,#f1eee8,#e7e3db)}
+html.light .heroBadges div{background:rgba(255,255,255,.85)}
+html.light /* page head */
+.pageHead{background:radial-gradient(ellipse 60% 70% at 85% 100%,rgba(179,34,46,.25),transparent 70%),
+  linear-gradient(180deg,#f6f4f0,#efece6)}
+html.light .carPic{background:linear-gradient(135deg,#f3f0ea 0%,#1a1b1f 55%,#f7e3e3 130%)}
+html.light .specs span{color:#55565c}
+html.light .specTable td:last-child{color:#16171a}
+html.light .incl li{color:#45464c}
+html.light .srv{background:linear-gradient(160deg,#ffffff,#efece6)}
+html.light .srv li{color:#45464c}
+html.light .lead{color:#3a3b40}
+html.light .bigYears{background:linear-gradient(140deg,#f3d3d3,#fbeceb 60%,#ffffff);border:1px solid #e5b9b9}
+html.light .bigYears p{color:#6b5a58}
+html.light .tgCard{background:linear-gradient(140deg,#f3d3d3,#fbeceb 60%,#ffffff);border:1px solid #e5b9b9}
+html.light .tgCard p{color:#6b5a58}
+html.light /* cta band */
+.cta{background:linear-gradient(120deg,#ffffff,#f8e7e5 60%,#f3d3d3);border:1px solid #e5b9b9}
+html.light .cta p{color:#6b5a58}
+html.light .rev p{color:#3a3b40}
+html.light .revEmpty{border:1px dashed #d6d2ca}
+html.light .socHandle{color:#16171a}
+html.light .socMini a{border:1px solid #d6d2ca;color:#16171a}
+html.light .fh{color:#16171a}
+html.light .fList a{color:#3a3b40}
+html.light .fRow{color:#3a3b40}
+html.light .fPhones a{color:#16171a}
+html.light .mapBox{background:#f1eee8}
+html.light .mapFake{background:linear-gradient(100deg,transparent 46%,#3a3b42 46.5%,#3a3b42 49%,transparent 49.5%),
+ linear-gradient(8deg,transparent 60%,#e9e5de 60.3%,#e9e5de 61.5%,transparent 62%),
+ linear-gradient(170deg,transparent 30%,#e9e5de 30.3%,#e9e5de 31.2%,transparent 31.6%),
+ repeating-linear-gradient(0deg,rgba(0,0,0,.035) 0 1px,transparent 1px 34px),
+ repeating-linear-gradient(90deg,rgba(0,0,0,.035) 0 1px,transparent 1px 34px),#fff}
+@media(max-width:700px){html.light .mBar{background:rgba(255,255,255,.94);border:1px solid #d6d2ca;box-shadow:0 10px 30px rgba(0,0,0,.12)}html.light .mBar a{background:#f3f0ea}}
+html.light .plat{background:linear-gradient(140deg,#f3d3d3,#fbeceb 60%,#ffffff);border:1px solid #e5b9b9}
+html.light .plat+.plat{background:linear-gradient(140deg,#f3f0ea,#ffffff 60%,#f8e7e5)}
+html.light .plat p{color:#6b5a58}
+html.light .mCard{background:linear-gradient(160deg,#ffffff,#efece6);border:1px solid #e5d6d6;box-shadow:0 40px 80px -20px rgba(0,0,0,.18),0 0 0 1px rgba(179,34,46,.15)}
+html.light .mX{border:1px solid #d6d2ca;background:#ffffff;color:#16171a}
+html.light .mCard label{color:#3a3b40}
+html.light .mTrust{color:#55565c}
+html.light .admStats div.hot{background:linear-gradient(140deg,#3a1418,#ffffff)}
+html.light .admTabs button{background:#ffffff;color:#45464c}
+html.light .lPhone{color:#16171a}
+html.light .lInfo{color:#3a3b40}
+html.light .admEmpty{border:1px dashed #d6d2ca}
+html.light /* services v2 */
+.regionSw{background:rgba(0,0,0,.05)}
+html.light .regionSw button{color:#45464c}
+html.light .route{background:linear-gradient(160deg,#ffffff,#efece6)}
+html.light .rList b{color:#3a3b40}
+html.light .route li{color:#3a3b40}
+html.light .rMore ul{border-top:1px dashed #d6d2ca}
+html.light .auctionBanner{background:linear-gradient(120deg,#f3d3d3,#f8e7e5 60%,#ffffff);border:1px solid #e5b9b9}
+html.light .auctionBanner small{color:#6b5a58}
+html.light .cLbl{color:#3a3b40}
+html.light .admSw button{color:#45464c}
+html.light .carEd label{color:#55565c}
+html.light .edPh{border:1px dashed #d6d2ca}
+html.light .ph.loading{background:#f1eee8}
+html.light .phAdd{border:1px solid #d6d2ca}
+html.light .crImg{background:linear-gradient(135deg,#f3f0ea,#f7e3e3) center/cover}
+html.light .descr{color:#3a3b40}
+html.light .stTabs button,html.light .viewSw button{color:#45464c}
+html.light .cSpec{color:#45464c}
+html.light .emptyBox{border:1px dashed #d6d2ca}
+html.light .sg{color:#2a2b30}
+html.light .cPv b{color:#16171a!important}
+html.light .cStat.sold{background:#e9e5de;color:#666}
+html.light .cdPhone a{color:#16171a}
+html.light .cdSpecs div{background:#faf8f4}
+html.light .vin{background:#faf8f4;border:1px dashed #d6d2ca}
+html.light .vin code{color:#16171a}
+html.light .vin button{border:1px solid #d6d2ca}
+html.light .cdBlock .descr{color:#3a3b40}
+html.light .optList li{color:#3a3b40}
+html.light .repRow{background:#faf8f4}
+html.light .rtTab{background:#efece6;color:#45464c}
+html.light .rtR>b{color:#3a3b40}
+html.light .rtR li{color:#2a2b30}
+html.light .rtAsk{color:#2a2b30}
+html.light /* service page */
+.svH{background:radial-gradient(ellipse 60% 70% at 85% 100%,rgba(179,34,46,.25),transparent 70%),linear-gradient(180deg,#f6f4f0,#efece6)}
+html.light .svTrust li{color:#3a3b40}
+html.light .svSteps div{background:rgba(255,255,255,.85)}
+html.light .svP{color:#45464c}
+html.light .svAlt a{color:#16171a}
+html.light .svOther a{background:linear-gradient(120deg,#ffffff,#f8e7e5);border:1px solid #e5b9b9}
+html.light .prcDep p{color:#45464c}
+html.light .prcNotes li{color:#45464c}
+html.light input,html.light select,html.light textarea{background:#faf8f4;border:1px solid #d6d2ca}
+html.light select option{background:#ffffff}
+html.light footer{background:#ebe7e0}
+html.light .fGrid h4{color:#16171a}
+/* light tweaks */
+html.light .btn-gold{color:#1a1306;background:linear-gradient(135deg,#ecd096,#c9a15a)}
+html.light h1 em,html.light h2 em{background:linear-gradient(90deg,#b8862f,#8a5c14);-webkit-background-clip:text;background-clip:text}
+html.light .btn-ghost{color:var(--text)}
+html.light .trails .w{background:linear-gradient(90deg,transparent,rgba(0,0,0,.18))}
+html.light .road::before{background:repeating-linear-gradient(90deg,rgba(0,0,0,.2) 0 60px,transparent 60px 130px)}
+html.light .carPic:not(.hasPhoto){background:linear-gradient(135deg,#efece6 0%,#f6f4f0 55%,#f3d3d3 130%)}
+html.light .carPic:not(.hasPhoto) .md{color:#16171a}
+html.light .lb{background:rgba(5,5,6,.96)}
+html.light .mBack{background:rgba(30,30,32,.45)}
+html.light .socMini a{border-color:#d6d2ca;color:#16171a}
+html.light .socMini a:hover{color:#fff}
+html.light .svOther a{background:linear-gradient(120deg,#ffffff,#f8e7e5);border-color:#e5b9b9;color:#16171a}
+html.light .exNote{color:#5a4a2a}
+html.light .cStat.available{color:#1f7a45}
+html.light .cSave{color:#1f7a45!important}
+html.light .chip{color:#7d1820}
+html.light .admSw button.on,html.light .stTabs button.on,html.light .admTabs button.on{color:#fff;background:var(--red2);border-color:var(--red2)}
+html.light .mBar a.mMain{background:linear-gradient(135deg,var(--red2),var(--red));color:#fff}
+html.light .viewSw button.on{background:#efece6}
+html.light .galMain2{border-color:var(--line)}
+html.light .vin code{color:#16171a}
+html.light .cdPhone a,html.light .svAlt a,html.light .cInfo b{color:#16171a}
+html.light .prcTbl tbody tr:hover{background:rgba(179,34,46,.05)}
+html.light .rtTab.on em{color:var(--gold2)}
+html.light .tgCard .btn-tg{background:#7d1820;color:#fff}
+html.light .mBar{border-color:#d6d2ca;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+html.light .mBar a{background:#efece6;color:#16171a}
+html.light .mBar a.mMain{color:#fff}
+html.light .flag{color:#fff}
+html.light .crImg{background-color:#f3f0ea}
+html.light .ph.loading{background:#f3f0ea}
+html.light input::placeholder,html.light textarea::placeholder{color:#9a989e}
+html.light select option{background:#fff;color:#16171a}
+html.light .cta p,html.light .tgCard p,html.light .plat p,html.light .bigYears p{color:#6b5a58}
+html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
 </style>
 </head>
 <body>
@@ -847,6 +1002,7 @@ footer{padding:60px 0 30px;border-top:1px solid var(--line);background:#0e0e10;c
       <li><a href="#contacts">Контакти</a></li>
     </ul>
     <div class="navR">
+      <button class="iconBtn themeBtn" id="themeBtn" aria-label="Світла / темна тема" title="Світла / темна тема"><svg class="tMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/></svg><svg class="tSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
       <a href="#contacts" class="btn btn-gold" data-lead>Замовити авто</a>
       <button class="iconBtn" id="burger" aria-label="Меню">☰</button>
     </div>
@@ -1767,6 +1923,8 @@ addEventListener('hashchange',route);
 
 /* ================= UI ================= */
 const nav=document.getElementById('nav');
+document.getElementById('themeBtn').onclick=()=>{const L=!document.documentElement.classList.contains('light');document.body.classList.add('themeAnim');document.documentElement.classList.toggle('light',L);try{localStorage.setItem('4auto_theme',L?'light':'dark')}catch(e){}document.querySelector('meta[name=theme-color]').content=L?'#f6f4f0':'#111214';setTimeout(()=>document.body.classList.remove('themeAnim'),450)};
+if(document.documentElement.classList.contains('light'))document.querySelector('meta[name=theme-color]').content='#f6f4f0';
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
 document.getElementById('burger').onclick=()=>document.getElementById('drawer').classList.add('open');
 document.getElementById('drawerClose').onclick=()=>document.getElementById('drawer').classList.remove('open');
