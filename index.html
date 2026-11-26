@@ -766,6 +766,8 @@ input,select,textarea{max-width:100%;min-width:0}
 .prcHd{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:10px}
 .prcHd span{color:var(--muted);font-size:14px}
 .prcHd i{font-style:normal;font-size:24px}
+.prcIco{width:52px;height:52px;flex:none;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--red),#3a1014);border:1px solid rgba(201,161,90,.3);color:var(--gold2)}
+.prcIco svg{width:34px;height:34px}
 .prcHd h3{font-size:clamp(17px,2vw,21px);margin-top:4px}
 .prcDep b{display:block;font:800 clamp(38px,5vw,52px) Unbounded;color:var(--gold2);margin:4px 0 14px}
 .prcDep p{color:#cfcdd1}
@@ -1698,8 +1700,8 @@ function renderSvc(k){const s=SVC[k];if(!s)return false;
     <div class="timeline">${s.proc.map((p,i)=>`<div class="tl reveal"><b>${String(i+1).padStart(2,'0')}</b><div><h3>${p[0]}</h3><p>${p[1]}</p></div></div>`).join('')}</div></div></section>
   <section><div class="wrap"><div class="secHead reveal"><div><div class="kicker">Вартість</div><h2>Оплати та вартість послуг</h2><p class="svP" style="margin-top:12px">Розписуємо бюджет наперед: послуга, доставка, митні платежі та можливі додаткові витрати.</p></div></div>
     ${k==='eu'?`<div class="prc reveal">
-      <div class="prcDep"><div class="prcHd"><span>Завдаток</span><i>🛡</i></div><b>$1 000</b><p>Вносите завдаток в офісі або переказом на рахунок ФОП. Одразу після цього ми запускаємо повний пошук авто під ваш запит.</p></div>
-      <div class="prcTbl"><div class="prcHd"><div><span>Вартість послуги «Авто під ключ»</span><h3>Залежить від вартості авто в Україні</h3></div><i>💵</i></div>
+      <div class="prcDep"><div class="prcHd"><span>Завдаток</span><i class="prcIco"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3 5 7v8c0 7 4.7 11.6 11 14 6.3-2.4 11-7 11-14V7z"/><path d="m11 16 3.5 3.5L21 13"/></svg></i></div><b>$1 000</b><p>Вносите завдаток в офісі або переказом на рахунок ФОП. Одразу після цього ми запускаємо повний пошук авто під ваш запит.</p></div>
+      <div class="prcTbl"><div class="prcHd"><div><span>Вартість послуги «Авто під ключ»</span><h3>Залежить від вартості авто в Україні</h3></div><i class="prcIco"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7.5" width="27" height="17" rx="3"/><path d="M2.5 12a4.5 4.5 0 0 0 4.5-4.5M29.5 12A4.5 4.5 0 0 1 25 7.5M2.5 20A4.5 4.5 0 0 1 7 24.5M29.5 20a4.5 4.5 0 0 0-4.5 4.5"/><path d="M18.6 12.6c-.5-.8-1.5-1.3-2.6-1.3-1.5 0-2.7.9-2.7 2.2 0 2.9 5.6 1.6 5.6 4.6 0 1.3-1.3 2.3-2.9 2.3-1.2 0-2.3-.6-2.8-1.5M16 9.6v1.7M16 20.4v2"/></svg></i></div>
         <table><thead><tr><th>Авто до</th><th>Послуга</th></tr></thead><tbody>${[['10 000','600'],['15 000','700'],['20 000','800'],['30 000','900'],['40 000','1 000'],['50 000','1 100'],['60 000+','1 200+']].map(r=>`<tr><td>$${r[0]}</td><td>$${r[1]}</td></tr>`).join('')}</tbody></table>
         <ul class="prcNotes"><li>Вартість послуги «Пригін під ключ» визначаємо за цією сіткою — залежно від підсумкової вартості авто в Україні.</li><li>Один огляд авто наживо вже входить у ціну, якщо саме це авто ми купуємо.</li><li>Якщо після огляду авто не купуємо — витрати на виїзд погоджуємо заздалегідь (зазвичай $100–200).</li></ul>
       </div></div>`:`<div class="svPay"><div class="reveal"><b>Прозорий розрахунок</b><p>Повну вартість розписуємо до старту: авто, логістика, мито, наші послуги.</p></div><div class="reveal"><b>Поетапна оплата</b><p>Платите частинами за договором — лише за виконані етапи.</p></div><div class="reveal"><b>Усі документи</b><p>Кожен платіж підтверджений рахунком чи квитанцією.</p></div></div>`}
