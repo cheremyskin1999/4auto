@@ -899,6 +899,16 @@ html.light .stats b{background-image:linear-gradient(100deg,#9a6a1e 0%,#9a6a1e 4
 @media(max-width:1200px){.navSoc{display:none}}
 html.light .navSoc a{border-color:#d6d2ca;color:#16171a}
 html.light .navSoc a:hover{color:#fff}
+/* card images & sold */
+.carPic.hasPhoto .cImg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.carPic.hasPhoto::after{z-index:1}
+.car .carPic.hasPhoto .pill,.car .carPic.hasPhoto .badge,.car .carPic.hasPhoto .phCnt,.car .carPic.hasPhoto .flag{z-index:2}
+.carPic .badge.sold{background:#2c2d33;color:#fff;border:1px solid rgba(255,255,255,.2)}
+.car:has(.badge.sold) .cImg{filter:grayscale(.55) brightness(.85)}
+.car:has(.badge.sold) .cPv s,.car:has(.badge.sold) .cSave{display:none!important}
+.car:has(.badge.sold) .cPv b{color:var(--muted)!important;text-decoration:line-through;text-decoration-thickness:1px}
+#catMoreBtn i{font-style:normal;opacity:.6;margin-left:4px}
+#catMoreBtn i::before{content:"("}#catMoreBtn i::after{content:")"}
 /* faq */
 .faq{max-width:860px;margin:0 auto}
 .q{border-bottom:1px solid var(--line)}
@@ -1249,6 +1259,7 @@ html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
         <div class="chipsRow" id="chipsRow" hidden><span>Активні фільтри:</span><div id="chips"></div><button type="button" id="fReset">Скинути все</button></div>
       </div>
       <div class="cars grid" id="catalogCars"></div>
+      <div class="center" id="catMore" hidden><button type="button" class="btn btn-ghost" id="catMoreBtn">Показати ще <i></i></button></div>
     </div>
   </section>
   <section style="padding-top:0">
@@ -1621,7 +1632,8 @@ const fmt=n=>'$'+n.toLocaleString('uk-UA').replace(/\s/g,' ');
 const kmF=n=>(+n||0).toLocaleString('uk-UA').replace(/\s/g,' ');
 const STC={transit:'В дорозі',sold:'Продано'};
 const specList=c=>[c.y,c.km!=null&&c.km!==''?kmF(c.km)+' км':'',[c.eng,c.fuel].filter(Boolean).join(' '),c.hp?Math.round(c.hp*0.7355)+' кВт':'',c.gb,c.dr].filter(Boolean);
-const picHTML=(c,big)=>`<div class="carPic${big?' bigPic':''}${c.photos&&c.photos[0]?' hasPhoto':''}"${c.photos&&c.photos[0]?` style="background-image:url('${c.photos[0]}')"`:''}>${c.status==='sold'?`<span class="badge sold">Продано</span>`:`<span class="pill ${c.status==='transit'?'transit':'available'}"><i></i>${c.status==='transit'?'В дорозі':'В наявності'}</span>`}${c.photos&&c.photos.length>1?`<span class="phCnt">📷 ${c.photos.length}</span>`:''}<div class="yr">${c.y}</div><div class="mk">${esc(c.mk)}</div><div class="md">${esc(c.md)}</div></div>`;
+const thumbOf=u=>/^https?:/.test(u)&&/\.jpg$/.test(u)?u.replace(/\.jpg$/,'_t.jpg'):u;
+const picHTML=(c,big)=>`<div class="carPic${big?' bigPic':''}${c.photos&&c.photos[0]?' hasPhoto':''}">${c.photos&&c.photos[0]?`<img class="cImg" loading="lazy" decoding="async" alt="" src="${big?c.photos[0]:thumbOf(c.photos[0])}" onerror="if(this.src!=='${c.photos[0]}')this.src='${c.photos[0]}'">`:''}${c.status==='sold'?`<span class="badge sold">Продано</span>`:`<span class="pill ${c.status==='transit'?'transit':'available'}"><i></i>${c.status==='transit'?'В дорозі':'В наявності'}</span>`}${c.photos&&c.photos.length>1?`<span class="phCnt">📷 ${c.photos.length}</span>`:''}<div class="yr">${c.y}</div><div class="mk">${esc(c.mk)}</div><div class="md">${esc(c.md)}</div></div>`;
 const gbLbl=g=>g==='Механіка'?'Механіка':g?'Автомат'+(g!=='Автомат'?' ('+g+')':''):'';
 const autoDesc=c=>c.descr?c.descr.split('\n')[0]:`${c.mk} ${c.md} ${c.y} року — перевірена історія, ціна під ключ в Україні.`;
 const cardSpec=c=>[c.fuel&&c.fuel[0].toUpperCase()+c.fuel.slice(1),gbLbl(c.gb),c.y&&c.y+' р.',c.km!=null&&c.km!==''?kmF(c.km)+' км':'',c.hp?`${Math.round(c.hp*0.7355)} кВт (${c.hp} к.с.)`:'',c.dr].filter(Boolean);
@@ -1706,8 +1718,10 @@ const CarsDB=(()=>{
       const c=await LeadsDB.client(),ext=(file.name.split('.').pop()||'pdf').toLowerCase().replace(/[^a-z0-9]/g,''),path=`reports/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
       const{error}=await c.storage.from('cars').upload(path,file,{contentType:file.type||'application/pdf'});if(error)throw new Error('Звіт не завантажився: '+error.message);return {url:c.storage.from('cars').getPublicUrl(path).data.publicUrl}},
     async upload(file){if(!(await LeadsDB.ready)){const b=await toBlob(file,1280,.78);return await new Promise(ok=>{const r=new FileReader();r.onload=()=>ok(r.result);r.readAsDataURL(b)})}
-      const b=await toBlob(file,1600,.82),c=await LeadsDB.client(),path=`${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
-      const{error}=await c.storage.from('cars').upload(path,b,{contentType:'image/jpeg'});if(error)throw new Error('Фото не завантажилось: '+error.message);return c.storage.from('cars').getPublicUrl(path).data.publicUrl}
+      const b=await toBlob(file,1600,.8),t=await toBlob(file,640,.72),c=await LeadsDB.client(),base=`${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+      const{error}=await c.storage.from('cars').upload(base+'.jpg',b,{contentType:'image/jpeg',cacheControl:'31536000'});if(error)throw new Error('Фото не завантажилось: '+error.message);
+      await c.storage.from('cars').upload(base+'_t.jpg',t,{contentType:'image/jpeg',cacheControl:'31536000'}).catch(()=>{});
+      return c.storage.from('cars').getPublicUrl(base+'.jpg').data.publicUrl}
   };
 })();
 async function loadCars(){try{const l=await CarsDB.list();CARS=l.map(c=>({...c,photos:c.photos||[],status:c.status||'available'}))}catch(e){console.warn('cars load failed',e)}const first=!carsLoaded;carsLoaded=true;if(first&&currentPage()==='car'&&!CARS.find(x=>String(x.id)===location.hash.slice(5))){location.hash='catalog';return}refreshCars()}
@@ -1721,7 +1735,7 @@ function carsRender(){
   const q=document.getElementById('carSearch').value.toLowerCase().trim();
   const l=CARS.filter(c=>(carTab==='all'||c.status===carTab)&&(!q||(c.mk+' '+c.md+' '+c.y).toLowerCase().includes(q)));
   document.getElementById('carList').innerHTML=l.length?l.map(c=>`<div class="cr ${c.status}" data-cid="${c.id}">
-    <div class="crImg" style="${c.photos&&c.photos[0]?`background-image:url('${c.photos[0]}')`:''}">${c.photos&&c.photos[0]?'':c.y}</div>
+    <div class="crImg" style="${c.photos&&c.photos[0]?`background-image:url('${thumbOf(c.photos[0])}'),url('${c.photos[0]}')`:''}">${c.photos&&c.photos[0]?'':c.y}</div>
     <div><div class="crT">${esc(c.mk)} ${esc(c.md)}</div><div class="crS">${specList(c).map(esc).join(' · ')}</div><div class="crP">${fmt(+c.p||0)} · ${(c.photos||[]).length} фото</div></div>
     <div class="crActs"><select data-cst>${Object.keys(CST).map(k=>`<option value="${k}" ${c.status===k?'selected':''}>${CST[k]}</option>`).join('')}</select>
       <a class="btn btn-ghost" href="#car-${c.id}" target="_blank">Переглянути</a><button class="btn btn-ghost" data-edit>Редагувати</button><button class="lDel" data-cdel>Видалити</button></div></div>`).join(''):`<div class="admEmpty">${CARS.length?'Нічого не знайдено':'Ще немає жодного авто. Натисніть «+ Додати авто».'}</div>`;
@@ -1858,12 +1872,15 @@ let catSt='all',catView='grid';
 try{catView=localStorage.getItem('4auto_view')||'grid'}catch(e){}
 const fG=document.getElementById('fGb');
 const isAutoGb=g=>g&&g!=='Механіка';
-function renderCatalog(){
-  const vis=CARS.filter(c=>c.status!=='sold');
+let catLimit=24;
+function renderCatalog(keep){
+  if(!keep)catLimit=24;
+  const vis=CARS;
   const base=vis.filter(c=>(!fB.value||c.mk===fB.value)&&(!fF.value||c.fuel===fF.value)&&(!fG.value||(fG.value==='auto'?isAutoGb(c.gb):c.gb==='Механіка'))&&(!fP.value||+c.p<=+fP.value));
-  const cnt=k=>base.filter(c=>k==='all'||c.status===k||(k==='available'&&c.status!=='transit')).length;
-  document.getElementById('stTabs').innerHTML=[['all','Всі'],['available','В наявності'],['transit','В дорозі']].map(([k,t])=>`<button data-st="${k}" class="${catSt===k?'on':''}">${t}<i>${cnt(k)}</i></button>`).join('');
-  let l=base.filter(c=>catSt==='all'||(catSt==='transit'?c.status==='transit':c.status!=='transit'));
+  const inTab=(c,k)=>k==='sold'?c.status==='sold':c.status!=='sold'&&(k==='all'||(k==='transit'?c.status==='transit':c.status!=='transit'));
+  const cnt=k=>base.filter(c=>inTab(c,k)).length;
+  document.getElementById('stTabs').innerHTML=[['all','Всі'],['available','В наявності'],['transit','В дорозі'],['sold','Продані']].map(([k,t])=>`<button data-st="${k}" class="${catSt===k?'on':''}">${t}<i>${cnt(k)}</i></button>`).join('');
+  let l=base.filter(c=>inTab(c,catSt));
   l.sort(fS.value==='cheap'?(a,b)=>a.p-b.p:fS.value==='exp'?(a,b)=>b.p-a.p:fS.value==='year'?(a,b)=>b.y-a.y:(a,b)=>(b.created_at?Date.parse(b.created_at):+b.id)-(a.created_at?Date.parse(a.created_at):+a.id));
   document.getElementById('foundN').textContent=l.length;
   // chips
@@ -1871,13 +1888,15 @@ function renderCatalog(){
   document.getElementById('chips').innerHTML=chips.join('');document.getElementById('filtCnt').textContent=chips.length?chips.length:'';document.getElementById('chipsRow').hidden=!chips.length;
   document.querySelectorAll('.viewSw button').forEach(b=>b.classList.toggle('on',b.dataset.view===catView));
   const g=document.getElementById('catalogCars');g.className='cars '+catView;
-  g.innerHTML=l.length?l.map(cardHTML).join(''):'<div class="emptyBox"><h3>Нічого не знайдено</h3><p>Спробуйте скинути фільтри або обрати інші параметри.</p><button class="btn btn-gold" id="showAll">Показати всі</button></div>';
+  const more=document.getElementById('catMore');more.hidden=l.length<=catLimit;more.querySelector('i').textContent=l.length-Math.min(l.length,catLimit);
+  g.innerHTML=l.length?l.slice(0,catLimit).map(cardHTML).join(''):catSt==='sold'?'<div class="emptyBox"><h3>Тут з\'являться продані авто</h3><p>Позначайте авто як «Продано» в адмінці — вони збережуться тут як наше портфоліо.</p></div>':'<div class="emptyBox"><h3>Нічого не знайдено</h3><p>Спробуйте скинути фільтри або обрати інші параметри.</p><button class="btn btn-gold" id="showAll">Показати всі</button></div>';
   observe(g);
 }
 document.getElementById('filtToggle').onclick=()=>document.querySelector('.filtBox').classList.toggle('open');
 function resetCat(){[fB,fF,fG,fP].forEach(s=>s.value='');catSt='all';renderCatalog()}
 [fB,fF,fG,fP,fS].forEach(s=>s.onchange=renderCatalog);
 document.getElementById('fReset').onclick=resetCat;
+document.getElementById('catMoreBtn').onclick=()=>{catLimit+=24;renderCatalog(true)};
 document.getElementById('chips').addEventListener('click',e=>{const c=e.target.closest('[data-clr]');if(c){document.getElementById(c.dataset.clr).value='';renderCatalog()}});
 document.getElementById('stTabs').addEventListener('click',e=>{const b=e.target.closest('[data-st]');if(b){catSt=b.dataset.st;renderCatalog()}});
 document.querySelector('.viewSw').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b){catView=b.dataset.view;try{localStorage.setItem('4auto_view',catView)}catch(e){}renderCatalog()}});
@@ -1901,7 +1920,7 @@ function renderCar(id){
   const reps=(c.reports||[]).filter(r=>r&&r.url);
   const opts=String(c.options||'').split('\n').map(s=>s.replace(/^[\s•\-–✅✔️]+/,'').trim()).filter(Boolean);
   const tgText=encodeURIComponent(`Вітаю! Цікавить ${title} ${c.y||''}, ${fmt(+c.p)}. ${location.href}`);
-  const gal=galPh.length?`<div class="gal2"><div class="galMain2" id="galMain" style="background-image:url('${galPh[0]}')"><span class="pill ${st}"><i></i>${stL}</span>${galPh.length>1?`<button class="gNav prev" data-gp aria-label="Попереднє фото">‹</button><button class="gNav next" data-gn aria-label="Наступне фото">›</button>`:''}<span class="gCnt" id="galCnt">1 / ${galPh.length}</span><button class="gFull" data-gf aria-label="На весь екран">⤢</button></div>${galPh.length>1?`<div class="galThumbs">${galPh.map((u,i)=>`<button data-ph="${i}" class="${i?'':'on'}" style="background-image:url('${u}')" aria-label="Фото ${i+1}"></button>`).join('')}</div>`:''}</div>`:`<div class="gal2">${picHTML(c,true)}</div>`;
+  const gal=galPh.length?`<div class="gal2"><div class="galMain2" id="galMain" style="background-image:url('${galPh[0]}')"><span class="pill ${st}"><i></i>${stL}</span>${galPh.length>1?`<button class="gNav prev" data-gp aria-label="Попереднє фото">‹</button><button class="gNav next" data-gn aria-label="Наступне фото">›</button>`:''}<span class="gCnt" id="galCnt">1 / ${galPh.length}</span><button class="gFull" data-gf aria-label="На весь екран">⤢</button></div>${galPh.length>1?`<div class="galThumbs">${galPh.map((u,i)=>`<button data-ph="${i}" class="${i?'':'on'}" style="background-image:url('${thumbOf(u)}'),url('${u}')" aria-label="Фото ${i+1}"></button>`).join('')}</div>`:''}</div>`:`<div class="gal2">${picHTML(c,true)}</div>`;
   document.getElementById('carDetail').innerHTML=`<div class="cd">
    <div class="cdL">${gal}</div>
    <aside class="cdR">
