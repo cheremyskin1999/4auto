@@ -830,7 +830,7 @@ body.themeAnim,body.themeAnim *{transition:background-color .35s,color .35s,bord
 /* scroll video */
 .scrubSec{position:relative;height:320vh;background:#0b0b0c}
 .scrubSticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.scrubSticky video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0b0b0c;filter:contrast(1.06) saturate(1.08) brightness(1.02)}
+.scrubSticky video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0b0b0c}
 .scrubSticky::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 120% 90% at 60% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
 .scrubShade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.85) 0%,rgba(11,11,12,0) 22%,rgba(11,11,12,0) 60%,rgba(11,11,12,.85) 100%),linear-gradient(90deg,rgba(11,11,12,.6),transparent 55%);pointer-events:none}
 .scrubCaps{position:absolute;inset:0;pointer-events:none}
@@ -2019,7 +2019,7 @@ addEventListener('hashchange',route);
 /* ================= SCROLL VIDEO ================= */
 (()=>{const sec=document.getElementById('scrub'),v=document.getElementById('scrubVid'),fill=document.getElementById('scrubFill'),caps=[...sec.querySelectorAll('.scap')],hl=document.getElementById('heroLayer');
   const dw=innerWidth*Math.min(devicePixelRatio||1,2);const portrait=innerHeight>innerWidth*1.1&&innerWidth<=820;if(portrait)v.poster='media/car-poster-m.jpg';
-  const url=portrait?'media/car-m1080.mp4':(dw>2400?'media/car-2560.mp4':'media/car-1920.mp4');
+  const url=portrait?'media/car-m1080.mp4':'media/car-1920.mp4';
   v.src=url;v.load();
   /* повністю завантажуємо відео в пам'ять — прокрутка без підвантажень і ривків */
   if(location.protocol.startsWith('http')&&window.fetch&&window.URL){fetch(url).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{const t=v.currentTime;v.src=URL.createObjectURL(b);v.addEventListener('loadedmetadata',()=>{try{v.currentTime=t}catch(e){}},{once:true});v.load()}).catch(()=>{})}
