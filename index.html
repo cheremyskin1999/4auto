@@ -867,6 +867,7 @@ html.light .scrubSec h1,html.light .scrubSec h2{color:#eeecea}
 html.light .scrubSec .tag{color:#ecd096;border-color:rgba(201,161,90,.35)}
 html.light .scrubSec h1 em,html.light .scrubSec h2 em{background:linear-gradient(90deg,#ecd096,#c9a15a);-webkit-background-clip:text;background-clip:text}
 html.light nav{background:rgba(246,244,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.scrubSticky video.vPortrait{inset:auto 0 auto 0;top:9vh;height:62vh;object-fit:cover;object-position:50% 50%;-webkit-mask:linear-gradient(180deg,transparent 0,#000 18%,#000 72%,transparent 100%);mask:linear-gradient(180deg,transparent 0,#000 18%,#000 72%,transparent 100%)}
 /* faq */
 .faq{max-width:860px;margin:0 auto}
 .q{border-bottom:1px solid var(--line)}
@@ -2019,7 +2020,7 @@ addEventListener('hashchange',route);
 /* ================= SCROLL VIDEO ================= */
 (()=>{const sec=document.getElementById('scrub'),v=document.getElementById('scrubVid'),fill=document.getElementById('scrubFill'),caps=[...sec.querySelectorAll('.scap')],hl=document.getElementById('heroLayer');
   const dw=innerWidth*Math.min(devicePixelRatio||1,2);const portrait=innerHeight>innerWidth*1.1&&innerWidth<=820;if(portrait)v.poster='media/car-poster-m.jpg';
-  const url=portrait?'media/car-m1080.mp4':(dw>2100?'media/car-2560.mp4':'media/car-1920.mp4');
+  const url=portrait?'media/car-m1080.mp4':'media/car-1920.mp4';if(portrait)v.classList.add('vPortrait');
   v.src=url;v.load();
   /* повністю завантажуємо відео в пам'ять — прокрутка без підвантажень і ривків */
   if(location.protocol.startsWith('http')&&window.fetch&&window.URL){fetch(url).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{const t=v.currentTime;v.src=URL.createObjectURL(b);v.addEventListener('loadedmetadata',()=>{try{v.currentTime=t}catch(e){}},{once:true});v.load()}).catch(()=>{})}
