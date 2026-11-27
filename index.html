@@ -1503,8 +1503,8 @@ html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
               <label>Стара ціна, $ <small style="text-transform:none">(для знижки)</small><input name="old_p" type="number" min="0" step="100" placeholder="необов'язково"></label>
               <label>Статус<select name="status"><option value="available">В наявності</option><option value="transit">В дорозі</option><option value="sold">Продано</option></select></label>
             </div>
-            <label>Походження та стан авто<textarea name="origin" rows="2" placeholder="Напр.: Пригнано з Німеччини, один власник, сервісна історія в дилера"></textarea></label>
-            <label>Інформація (опис) <small style="text-transform:none">(перший рядок показується в каталозі)</small><textarea name="descr" rows="3" placeholder="Стан, особливості, що в комплекті…"></textarea></label>
+            <label>Стан авто<textarea name="origin" rows="2" placeholder="Напр.: Пригнано з Німеччини, один власник, сервісна історія в дилера"></textarea></label>
+            <label>Комплектація (опис) <small style="text-transform:none">(перший рядок показується в каталозі)</small><textarea name="descr" rows="3" placeholder="Стан, особливості, що в комплекті…"></textarea></label>
             <label>Опції / комплектація <small style="text-transform:none">(кожна з нового рядка)</small><textarea name="options" rows="5" placeholder="Led оптика&#10;Камера заднього огляду&#10;Підігрів сидінь&#10;Круїз-контроль"></textarea></label>
             <div class="edPh">
               <div class="edPhHead"><b>Звіти та історія</b><small>CarFax, AutoCheck, сервісна історія, діагностика — PDF або фото</small></div>
@@ -1915,9 +1915,9 @@ function renderCar(id){
     ${c.vin?`<div class="vin"><span>VIN</span><code id="vinCode">${esc(c.vin)}</code><button type="button" id="vinCopy">Копіювати</button></div>`:''}
    </aside></div>
    ${reps.length?`<div class="cdBlock reveal"><div class="cdH"><h2>Звіти та історія</h2><span class="cnt">${reps.length} ${docWord(reps.length)}</span></div><div class="reps">${reps.map(r=>`<a class="rep" href="${r.url}" target="_blank" rel="noopener" download="${esc(r.name||'Звіт')}"><i>📄</i><div><b>${esc(r.name||'Звіт')}</b><small>${/\.pdf|application\/pdf/i.test(r.url.slice(0,40)+(r.type||''))?'PDF':'Файл'}${r.size?' · '+fmtSize(r.size):''}</small></div><em>↗</em></a>`).join('')}</div></div>`:''}
-   ${(c.origin||c.descr||opts.length)?`<div class="cdBlock reveal"><div class="cdH"><h2>Комплектація</h2>${opts.length?`<button type="button" class="btn btn-ghost" id="optCopy" style="padding:10px 16px;font-size:13px">Копіювати опції</button>`:''}</div>
-     ${c.origin?`<h3 class="cdSub">Походження та стан авто</h3><p class="descr">${esc(c.origin)}</p>`:''}
-     ${c.descr?`<h3 class="cdSub">Інформація</h3><p class="descr">${esc(c.descr)}</p>`:''}
+   ${(c.origin||c.descr||opts.length)?`<div class="cdBlock reveal"><div class="cdH"><h2>Про авто</h2>${opts.length?`<button type="button" class="btn btn-ghost" id="optCopy" style="padding:10px 16px;font-size:13px">Копіювати опції</button>`:''}</div>
+     ${c.origin?`<h3 class="cdSub">Стан авто</h3><p class="descr">${esc(c.origin)}</p>`:''}
+     ${c.descr?`<h3 class="cdSub">Комплектація</h3><p class="descr">${esc(c.descr)}</p>`:''}
      ${opts.length?`<h3 class="cdSub">Інше</h3><ul class="optList">${opts.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>`:''}</div>`:''}
    <div class="cdBlock reveal"><div class="cdH"><h2>Додатково</h2></div><ul class="optList extra">
      <li>Детальний відеоогляд авто — надішлемо в Telegram або Viber</li><li>Можлива перевірка на офіційному СТО перед купівлею</li><li>Розрахунок у гривні, доларах чи євро</li><li>Оплата готівкою або безготівковим переказом</li><li>Оформлення документів у день звернення</li><li>Продаж дистанційно з доставкою до вашого міста</li></ul></div>
