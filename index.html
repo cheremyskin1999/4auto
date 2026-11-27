@@ -2018,7 +2018,11 @@ addEventListener('hashchange',route);
 /* ================= UI ================= */
 /* ================= SCROLL VIDEO ================= */
 (()=>{const sec=document.getElementById('scrub'),v=document.getElementById('scrubVid'),fill=document.getElementById('scrubFill'),caps=[...sec.querySelectorAll('.scap')],hl=document.getElementById('heroLayer');
-  const dw=innerWidth*Math.min(devicePixelRatio||1,2);const portrait=innerHeight>innerWidth*1.1&&innerWidth<=820;if(portrait)v.poster='media/car-poster-m.jpg';v.src=portrait?'media/car-m1080.mp4':(dw>2400?'media/car-2560.mp4':'media/car-1920.mp4');v.load();
+  const dw=innerWidth*Math.min(devicePixelRatio||1,2);const portrait=innerHeight>innerWidth*1.1&&innerWidth<=820;if(portrait)v.poster='media/car-poster-m.jpg';
+  const url=portrait?'media/car-m1080.mp4':(dw>2400?'media/car-2560.mp4':'media/car-1920.mp4');
+  v.src=url;v.load();
+  /* повністю завантажуємо відео в пам'ять — прокрутка без підвантажень і ривків */
+  if(location.protocol.startsWith('http')&&window.fetch&&window.URL){fetch(url).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{const t=v.currentTime;v.src=URL.createObjectURL(b);v.addEventListener('loadedmetadata',()=>{try{v.currentTime=t}catch(e){}},{once:true});v.load()}).catch(()=>{})}
   let target=0,cur=0,ready=false,primed=false;
   const prime=()=>{if(primed)return;primed=true;const p=v.play();if(p&&p.then)p.then(()=>v.pause()).catch(()=>{})};
   v.addEventListener('loadedmetadata',()=>{ready=true});
