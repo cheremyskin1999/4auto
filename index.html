@@ -261,6 +261,13 @@ h2{font-size:clamp(28px,4vw,48px);line-height:1.08;font-weight:800}
 .rev .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px}
 .ava{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--red2),var(--red));font:700 16px Unbounded}
 .who b{display:block;font-size:15px}.who small{color:var(--gold);font-size:13px}
+.rvTop{display:flex;align-items:center;gap:12px}.rvWho{flex:1;min-width:0}.rvWho b{display:block;font-size:16px}.rvWho small{color:var(--muted);font-size:12.5px}
+.rvScore{display:flex;align-items:center;gap:5px;padding:8px 12px;border-radius:12px;background:rgba(201,161,90,.1);border:1px solid rgba(201,161,90,.3);font:700 16px Unbounded;color:var(--gold2)}.rvScore span{font-size:15px}
+.rvTags{display:flex;flex-wrap:wrap;gap:8px}.rvTags span{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--text)}
+.rvTags svg{width:14px;height:14px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rvPh{width:150px;height:112px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.rev p{font-style:italic}.revMore{grid-column:1/-1;justify-self:center;color:var(--gold2);font-weight:600;margin-top:4px}.revMore:hover{color:var(--gold)}
+html.light .rvTags span{color:#2a2b30}
 .revEmpty{grid-column:1/-1;text-align:center;padding:60px 30px;border:1px dashed #3a3b40;border-radius:24px;color:var(--muted)}
 .revEmpty h3{color:var(--text);font-size:20px;margin-bottom:10px}
 .rate{display:flex;gap:6px;font-size:30px;cursor:pointer;color:#3a3b40;user-select:none}
@@ -1573,13 +1580,13 @@ html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
     <h4 class="fh">Контакти</h4>
     <div class="fContact">
       <div class="fRows">
-        <a class="fRow" href="https://maps.app.goo.gl/yqiNjRx7m2wjmicy8" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></i><span id="fAddr">Наша точка на Google Maps ↗</span></a>
+        <a class="fRow" href="https://maps.app.goo.gl/ynfHCqCxbbo2m8ND9" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></i><span id="fAddr">Наша точка на Google Maps ↗</span></a>
         <div class="fRow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></i><span class="fPhones"><a href="tel:+380938892154">+38 (093) 889-21-54</a><a href="tel:+380678892154">+38 (067) 889-21-54</a></span></div>
         <div class="fRow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span>Пн–Сб: 09:00 – 20:00</span></div>
       </div>
       <div class="mapBox" id="mapBox">
         <div class="mapFake"><div class="mapPin"><span></span></div></div>
-        <a class="mapBtn" href="https://maps.app.goo.gl/yqiNjRx7m2wjmicy8" target="_blank" rel="noopener">Відкрити в Google Maps ↗</a>
+        <a class="mapBtn" href="https://maps.app.goo.gl/ynfHCqCxbbo2m8ND9" target="_blank" rel="noopener">Відкрити в Google Maps ↗</a>
       </div>
     </div>
     <div class="fBottom"><span>© 2026 4AUTO — пригін перевірених авто з Європи. Всі права захищені.</span><a href="#admin" style="margin-left:auto;opacity:.6">Вхід для менеджера</a></div>
@@ -1624,8 +1631,17 @@ const FAQ=[
  ['Як відбувається оплата?','Поетапно за договором: оплата послуг, далі оплата авто продавцю та митних платежів — усе з документами.'],
  ['Чи можна пригнати авто, якого немає в каталозі?','Так. На сайті — лише добірка. Ми знайдемо будь-яке авто під ваш запит і бюджет.']
 ];
-// Реальні відгуки клієнтів: [ім'я, місто, авто, оцінка 1-5, текст]
+// Реальні відгуки клієнтів з AUTO.RIA: {n:ім'я, t:[теги], x:текст, a:авто, ph:фото}
 const REVIEWS=[
+ {n:'Андрій Князів',a:'Mitsubishi',t:['Рекомендую','Ввічливий','Актуальні опис/фото'],x:'Купили у Влада Мітсубіші, стан відповідав опису. Вже катаємось більше двох місяців, автомобіль ідеальний. Виконав доставку нам під дім. Дякуєм за чесність',ph:'media/rev/mitsubishi.jpg'},
+ {n:'Олег Андрійович',a:'KIA',t:['Ввічливий','Актуальні опис/фото','Готовий до перевірок'],x:'Приїжджав, оглядав автомобіль KIA, все відповідає дійсності, купив. Дякую'},
+ {n:'Олександр',a:'Hyundai',t:['Рекомендую','Швидко відповідає','Ввічливий','Актуальні опис/фото'],ph:'media/rev/hyundai.jpg'},
+ {n:'Єгор Петренко',t:['Рекомендую','Швидко відповідає','Ввічливий','Актуальні опис/фото']},
+ {n:'Taras',t:['Рекомендую','Ввічливий','Готовий до перевірок']},
+ {n:'Павло Коваленко',t:['Рекомендую','Швидко відповідає','Актуальні опис/фото']},
+ {n:'Сергій',t:['Рекомендую','Швидко відповідає','Ввічливий']},
+ {n:'Yaroslav',t:['Рекомендую','Швидко відповідає','Готовий до перевірок']},
+ {n:'Олексій Бондар',t:['Рекомендую','Ввічливий','Актуальні опис/фото']}
 ];
 const fmt=n=>'$'+n.toLocaleString('uk-UA').replace(/\s/g,' ');
 
@@ -1657,9 +1673,11 @@ const srvHTML=(s,full)=>`<div class="srv reveal"><div class="ico">${s[0]}</div><
 document.getElementById('homeServices').innerHTML=SERVICES.slice(0,3).map(s=>srvHTML(s,false)).join('');
 document.getElementById('faqList').innerHTML=FAQ.map(f=>`<div class="q reveal"><button>${f[0]}<span>+</span></button><div class="a"><p>${f[1]}</p></div></div>`).join('');
 document.querySelectorAll('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,a=q.querySelector('.a'),o=q.classList.toggle('open');a.style.maxHeight=o?a.scrollHeight+'px':0});
-const revHTML=r=>`<div class="rev reveal"><div class="stars">${'★'.repeat(r[3])}${'☆'.repeat(5-r[3])}</div><p>${r[4]}</p><div class="who"><div class="ava">${r[0][0]}</div><div><b>${r[0]}${r[1]?', '+r[1]:''}</b><small>${r[2]}</small></div></div></div>`;
+const TICO={'Рекомендую':'<svg viewBox="0 0 24 24"><path d="M7 10v11H3V10zM7 10l4-7c1.7 0 2.7 1.3 2.3 3L13 9h6a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg>'};
+const tChk='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const revHTML=r=>`<div class="rev reveal"><div class="rvTop"><div class="ava">${esc(r.n[0])}</div><div class="rvWho"><b>${esc(r.n)}</b><small>Покупець${r.a?' · '+esc(r.a):''} · AUTO.RIA</small></div><div class="rvScore">5.0<span>★</span></div></div><div class="rvTags">${r.t.map(t=>`<span>${TICO[t]||tChk}${esc(t)}</span>`).join('')}</div>${r.x?`<p>«${esc(r.x)}»</p>`:''}${r.ph?`<img class="rvPh" src="${r.ph}" alt="${esc(r.a||'Авто клієнта')}" loading="lazy">`:''}</div>`;
 document.getElementById('revList').innerHTML=REVIEWS.map(revHTML).join('');
-if(REVIEWS.length)document.getElementById('homeRevs').innerHTML=REVIEWS.slice(0,3).map(revHTML).join('');
+if(REVIEWS.length)document.getElementById('homeRevs').innerHTML=REVIEWS.slice(0,3).map(revHTML).join('')+`<a class="revMore" href="#reviews">Всі відгуки (${REVIEWS.length}) →</a>`;
 let stars=5;const rateEl=document.getElementById('rate');
 const paint=()=>[...rateEl.children].forEach((s,i)=>s.classList.toggle('on',i<stars));paint();
 [...rateEl.children].forEach((s,i)=>s.onclick=()=>{stars=i+1;paint()});
