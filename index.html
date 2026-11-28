@@ -268,6 +268,22 @@ h2{font-size:clamp(28px,4vw,48px);line-height:1.08;font-weight:800}
 .rvPh{width:150px;height:112px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 .rev p{font-style:italic}.revMore{grid-column:1/-1;justify-self:center;color:var(--gold2);font-weight:600;margin-top:4px}.revMore:hover{color:var(--gold)}
 html.light .rvTags span{color:#2a2b30}
+.igBlock{margin-top:56px}.igHead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px}.igHead h2{margin:0}
+.igNav{display:flex;gap:10px;align-items:center}.igArr{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--gold2);font-size:26px;line-height:1;cursor:pointer;transition:.25s}.igArr:hover{border-color:var(--gold);background:rgba(201,161,90,.12)}
+.igRow{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.igRow::-webkit-scrollbar{display:none}
+.igCard{flex:none;width:236px;border-radius:22px;padding:2px;background:linear-gradient(150deg,var(--gold2),var(--gold) 35%,var(--red2) 75%,var(--red));scroll-snap-align:start;cursor:pointer;position:relative;transition:transform .35s,box-shadow .35s;border:0}
+.igCard:hover{transform:translateY(-6px);box-shadow:0 22px 40px -18px rgba(179,34,46,.6)}
+.igIn{position:relative;border-radius:20px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}.igPic{position:relative;aspect-ratio:600/922;overflow:hidden;background:#111}.igIn img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}.igCard:hover img{transform:scale(1.05)}
+.igPic:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 20%)}
+.igTop{position:absolute;top:12px;left:12px;right:12px;z-index:2;display:flex;align-items:center;gap:8px;font-size:12px;color:#fff}.igAva{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#141418;border:1.5px solid var(--gold);font:800 9px Unbounded;color:var(--gold2)}.igTop small{opacity:.75;margin-left:auto}
+.igBot{padding:14px 16px 16px;color:var(--text);text-align:left}.igBot b{display:block;font:700 15px Unbounded;line-height:1.25}.igBot span{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12.5px;color:var(--gold)}.igBot svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2}
+.igPlay{position:absolute;top:50%;left:50%;width:54px;height:54px;margin:-27px;border-radius:50%;background:rgba(10,10,12,.45);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);z-index:2;display:grid;place-items:center;opacity:0;transition:.3s}.igCard:hover .igPlay{opacity:1}.igPlay svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.8}
+.igLb{position:fixed;inset:0;z-index:300;background:rgba(6,6,8,.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;gap:18px;padding:20px}.igLb.on{display:flex}
+.igLb figure{margin:0;position:relative;height:min(88vh,860px);aspect-ratio:600/922;max-width:92vw;border-radius:22px;overflow:hidden;border:2px solid rgba(201,161,90,.6)}.igLb img{width:100%;height:100%;object-fit:cover}
+.igLb .igBars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px;z-index:2}.igBars i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3)}.igBars i.on{background:#fff}
+.igLb .igX{position:absolute;top:18px;right:22px;font-size:34px;color:#fff;background:none;border:0;cursor:pointer;z-index:3}.igLb .igArr{flex:none}
+@media(max-width:640px){.igCard{width:62vw}.igNav .igArr{display:none}.igLb .igArr{position:absolute;bottom:24px}.igLb .igArr[data-d="-1"]{left:24px}.igLb .igArr[data-d="1"]{right:24px}.igLb figure{height:auto;width:92vw}}
+html.light .igArr{background:#fff}
 .revEmpty{grid-column:1/-1;text-align:center;padding:60px 30px;border:1px dashed #3a3b40;border-radius:24px;color:var(--muted)}
 .revEmpty h3{color:var(--text);font-size:20px;margin-bottom:10px}
 .rate{display:flex;gap:6px;font-size:30px;cursor:pointer;color:#3a3b40;user-select:none}
@@ -1228,7 +1244,7 @@ html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
     <p>Відгуки клієнтів на нашій сторінці в Google</p>
     <span class="platBtn">Читати й залишити відгук →</span>
   </a>
-</div><div class="revs" id="homeRevs" style="margin-top:22px"></div>
+</div><div class="revs" id="homeRevs" style="margin-top:22px"></div><div class="igBlock reveal"><div class="igHead"><div><div class="kicker">Instagram · #відгуки</div><h2>Щасливі <em>власники</em></h2></div><div class="igNav"><button class="igArr" data-d="-1" aria-label="Назад">‹</button><button class="igArr" data-d="1" aria-label="Вперед">›</button><a class="btn btn-ghost igMore" href="https://www.instagram.com/4auto_radyvyliv" target="_blank" rel="noopener">Більше в Instagram ↗</a></div></div><div class="igRow"></div></div>
     </div>
   </section>
 
@@ -1406,7 +1422,7 @@ html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
     <p>Відгуки клієнтів на нашій сторінці в Google</p>
     <span class="platBtn">Читати й залишити відгук →</span>
   </a>
-</div><div class="revs" id="revList" style="margin-top:22px"></div></div></section>
+</div><div class="revs" id="revList" style="margin-top:22px"></div><div class="igBlock reveal"><div class="igHead"><div><div class="kicker">Instagram · #відгуки</div><h2>Щасливі <em>власники</em></h2></div><div class="igNav"><button class="igArr" data-d="-1" aria-label="Назад">‹</button><button class="igArr" data-d="1" aria-label="Вперед">›</button><a class="btn btn-ghost igMore" href="https://www.instagram.com/4auto_radyvyliv" target="_blank" rel="noopener">Більше в Instagram ↗</a></div></div><div class="igRow"></div></div></div></section>
   <section class="alt">
     <div class="wrap two" style="align-items:start">
       <div class="reveal">
@@ -1682,6 +1698,18 @@ const tChk='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const revHTML=r=>`<div class="rev reveal"><div class="rvTop"><div class="ava">${esc(r.n[0])}</div><div class="rvWho"><b>${esc(r.n)}</b><small>Покупець${r.a?' · '+esc(r.a):''} · ${r.g?'Google Maps':'AUTO.RIA'}</small></div><div class="rvScore">5.0<span>★</span></div></div>${r.t?`<div class="rvTags">${r.t.map(t=>`<span>${TICO[t]||tChk}${esc(t)}</span>`).join('')}</div>`:''}${r.x?`<p>«${esc(r.x)}»</p>`:''}${r.ph?`<img class="rvPh" src="${r.ph}" alt="${esc(r.a||'Авто клієнта')}" loading="lazy">`:''}</div>`;
 document.getElementById('revList').innerHTML=REVIEWS.map(revHTML).join('');
 if(REVIEWS.length)document.getElementById('homeRevs').innerHTML=REVIEWS.filter(r=>r.x).slice(0,3).map(revHTML).join('')+`<a class="revMore" href="#reviews">Всі відгуки (${REVIEWS.length}) →</a>`;
+
+/* Instagram-відгуки (сторіс) */
+const IG=[['Hyundai Santa Fe','Нова власниця з Чернівців','29.03.2025'],['Kia Sorento','Вітаємо нового власника','28.04.2025'],['Renault Trafic','Вітаємо нових власників','10.06.2025'],['VW T6 2021','Доставка в м. Здолбунів','03.07.2025'],['Kia Sportage 2011','Вітаємо нову власницю','05.07.2025'],['Hyundai Santa Fe 2011','Вітаємо нову власницю','23.08.2025'],['Kia Sorento','Нові власники з м. Київ','05.10.2025'],['Kia Sportage 2012','Під замовлення · м. Кременець','19.11.2025']].map((r,i)=>({src:`media/ig/s${i+1}.jpg`,car:r[0],t:r[1],d:r[2]})).reverse();
+const igPin='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+document.querySelectorAll('.igRow').forEach(row=>{row.innerHTML=IG.map((s,i)=>`<button class="igCard" data-i="${i}" aria-label="${s.car}"><div class="igIn"><div class="igPic"><img src="${s.src}" alt="${s.car} — відгук клієнта 4AUTO" ${i<5?'':'loading="lazy"'} decoding="async"><div class="igTop"><span class="igAva">4A</span>4auto_radyvyliv<small>${s.d}</small></div><div class="igPlay"><svg viewBox="0 0 24 24"><path d="M3 12s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z"/><circle cx="12" cy="12" r="3"/></svg></div></div><div class="igBot"><b>${s.car}</b><span>${igPin}${s.t}</span></div></div></button>`).join('')});
+document.querySelectorAll('.igBlock .igNav .igArr').forEach(b=>b.onclick=()=>{const r=b.closest('.igBlock').querySelector('.igRow');r.scrollBy({left:+b.dataset.d*(r.querySelector('.igCard').offsetWidth+18)*2,behavior:'smooth'})});
+const igLb=document.createElement('div');igLb.className='igLb';igLb.innerHTML='<button class="igArr" data-d="-1" aria-label="Назад">‹</button><figure><div class="igBars"></div><img alt=""></figure><button class="igArr" data-d="1" aria-label="Вперед">›</button><button class="igX" aria-label="Закрити">×</button>';document.body.appendChild(igLb);
+let igI=0,igT;const igShow=i=>{igI=(i+IG.length)%IG.length;igLb.querySelector('img').src=IG[igI].src;igLb.querySelector('img').alt=IG[igI].car;igLb.querySelector('.igBars').innerHTML=IG.map((_,k)=>`<i class="${k<=igI?'on':''}"></i>`).join('');clearTimeout(igT);igT=setTimeout(()=>igLb.classList.contains('on')&&igShow(igI+1),6000)};
+const igClose=()=>{igLb.classList.remove('on');clearTimeout(igT);document.documentElement.style.overflow=''};
+document.addEventListener('click',e=>{const c=e.target.closest('.igCard');if(c){igLb.classList.add('on');document.documentElement.style.overflow='hidden';igShow(+c.dataset.i)}});
+igLb.addEventListener('click',e=>{const a=e.target.closest('.igArr');if(a){igShow(igI+ +a.dataset.d);return}if(e.target===igLb||e.target.closest('.igX'))igClose()});
+document.addEventListener('keydown',e=>{if(!igLb.classList.contains('on'))return;if(e.key==='Escape')igClose();if(e.key==='ArrowRight')igShow(igI+1);if(e.key==='ArrowLeft')igShow(igI-1)});
 let stars=5;const rateEl=document.getElementById('rate');
 const paint=()=>[...rateEl.children].forEach((s,i)=>s.classList.toggle('on',i<stars));paint();
 [...rateEl.children].forEach((s,i)=>s.onclick=()=>{stars=i+1;paint()});
