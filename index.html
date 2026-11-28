@@ -1687,7 +1687,7 @@ const paint=()=>[...rateEl.children].forEach((s,i)=>s.classList.toggle('on',i<st
 [...rateEl.children].forEach((s,i)=>s.onclick=()=>{stars=i+1;paint()});
 document.getElementById('revForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('revThanks').style.display='block';e.target.reset();stars=5;paint()});
 // Карта: впишіть адресу у MAP_QUERY — на хостингу з'явиться жива Google-карта
-const MAP_QUERY='50.1410625,25.2630625';
+const MAP_QUERY='50.138538,25.263016';
 if(MAP_QUERY&&location.protocol.startsWith('http')){document.getElementById('mapBox').insertAdjacentHTML('afterbegin',`<iframe loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=16&hl=uk&output=embed"></iframe>`);}
 /* ================= БАЗА ЗАЯВОК (Supabase) ================= */
 // Вставте дані свого проєкту Supabase (Project Settings → API). Поки порожньо — працює демо-режим.
