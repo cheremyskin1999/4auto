@@ -339,7 +339,17 @@ a.fRow:hover span{color:var(--gold2)}
 .mapPin{position:absolute;left:50%;top:45%;width:34px;height:34px;margin:-34px 0 0 -17px;background:var(--red2);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 6px 20px rgba(179,34,46,.7)}
 .mapPin span{position:absolute;left:11px;top:11px;width:12px;height:12px;border-radius:50%;background:#fff}
 .mapPin::after{content:"";position:absolute;left:-14px;top:-14px;width:60px;height:60px;border-radius:50%;border:2px solid var(--red2);animation:pulse 2s infinite}
-.mapBtn{position:absolute;left:14px;top:14px;background:#fff;color:#5a141b;font-weight:700;font-size:14px;padding:10px 16px;border-radius:10px;display:inline-block!important}
+.mapLbl{position:absolute;left:50%;top:calc(45% + 22px);transform:translateX(-50%);z-index:3;pointer-events:none;text-align:center;padding:8px 16px 9px;border-radius:12px;background:rgba(16,16,19,.82);backdrop-filter:blur(6px);border:1px solid rgba(201,161,90,.45);box-shadow:0 10px 30px -10px rgba(0,0,0,.7);white-space:nowrap;animation:mapLblIn .9s cubic-bezier(.2,.8,.2,1) .3s both,mapLblFloat 3.2s ease-in-out 1.2s infinite}
+.mapLbl b{display:block;font:700 15px Unbounded,sans-serif;letter-spacing:.02em;background:linear-gradient(90deg,var(--gold),#fff3d6 45%,var(--gold2) 55%,var(--gold));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:mapLblShine 3.5s linear infinite}
+.mapLbl small{display:block;margin-top:2px;font-size:11px;color:#a9a7ab;letter-spacing:.04em}
+.mapLbl:before{content:"";position:absolute;left:50%;top:-6px;width:10px;height:10px;margin-left:-5px;transform:rotate(45deg);background:rgba(16,16,19,.9);border-left:1px solid rgba(201,161,90,.45);border-top:1px solid rgba(201,161,90,.45)}
+.mapBox.live .mapFake{display:none}.mapBox.live .mapLbl{top:calc(50% + 12px)}
+@keyframes mapLblIn{from{opacity:0;transform:translate(-50%,14px) scale(.92)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes mapLblFloat{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-4px)}}
+@keyframes mapLblShine{to{background-position:-220% 0}}
+@media(hover:none){.mapLbl b{background:none;color:var(--gold2);animation:none}}
+html.light .mapLbl{background:rgba(255,255,255,.92)}html.light .mapLbl small{color:#6b6a70}html.light .mapLbl:before{background:#fff}html.light .mapLbl b{background:none;color:#8a6a2e;animation:none}
+.mapBtn{position:absolute;z-index:4;left:14px;top:14px;background:#fff;color:#5a141b;font-weight:700;font-size:14px;padding:10px 16px;border-radius:10px;display:inline-block!important}
 .mapBtn:hover{background:var(--gold2)}
 .fBottom{justify-content:flex-start!important}
 /* mobile bottom bar */
@@ -1601,7 +1611,7 @@ html.light .bigYears b{-webkit-text-stroke-color:#9a6a1e}
         <div class="fRow"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span>Пн–Сб: 09:00 – 20:00</span></div>
       </div>
       <div class="mapBox" id="mapBox">
-        <div class="mapFake"><div class="mapPin"><span></span></div></div>
+        <div class="mapFake"><div class="mapPin"><span></span></div></div><div class="mapLbl"><b>м. Радивилів</b><small>Рівненська обл. · 4AUTO</small></div>
         <a class="mapBtn" href="https://maps.app.goo.gl/ynfHCqCxbbo2m8ND9" target="_blank" rel="noopener">Відкрити в Google Maps ↗</a>
       </div>
     </div>
@@ -1716,7 +1726,7 @@ const paint=()=>[...rateEl.children].forEach((s,i)=>s.classList.toggle('on',i<st
 document.getElementById('revForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('revThanks').style.display='block';e.target.reset();stars=5;paint()});
 // Карта: впишіть адресу у MAP_QUERY — на хостингу з'явиться жива Google-карта
 const MAP_QUERY='50.138538,25.263016';
-if(MAP_QUERY&&location.protocol.startsWith('http')){document.getElementById('mapBox').insertAdjacentHTML('afterbegin',`<iframe loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=16&hl=uk&output=embed"></iframe>`);}
+if(MAP_QUERY&&location.protocol.startsWith('http')){document.getElementById('mapBox').classList.add('live');document.getElementById('mapBox').insertAdjacentHTML('afterbegin',`<iframe loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=16&hl=uk&output=embed"></iframe>`);}
 /* ================= БАЗА ЗАЯВОК (Supabase) ================= */
 // Вставте дані свого проєкту Supabase (Project Settings → API). Поки порожньо — працює демо-режим.
 const SUPABASE_URL='https://oejzgogyycjrghvtgbjq.supabase.co';
