@@ -1633,6 +1633,10 @@ const FAQ=[
 ];
 // Реальні відгуки клієнтів з AUTO.RIA: {n:ім'я, t:[теги], x:текст, a:авто, ph:фото}
 const REVIEWS=[
+ {g:1,n:'Igor Pysanchyn',x:'Купили у Влада автомобіль, все так як він росказав по телефону, все так і по машині. Дякую за чесніть та порядність',ph:'media/rev/g1.jpg'},
+ {g:1,n:'Андрій Князів',a:'Mitsubishi',x:'Звернулись до Влада (власника площадки) за автомобілем Мітсубіші, все відповідало опису та відео-огляду. Також здійснили доставку з повним пакетом документів під наш дім. Рекомендую. В майбутньому буду звертатись'},
+ {g:1,n:'001 Intensive',x:'Купили автомобіль, чесний і порядний чоловік. Все відповідало дійсності. Рекомендую'},
+ {g:1,n:'Катя Івасюк',x:'Оглянули та купили авто. Дякую за чесніть та порядність'},
  {n:'Андрій Князів',a:'Mitsubishi',t:['Рекомендую','Ввічливий','Актуальні опис/фото'],x:'Купили у Влада Мітсубіші, стан відповідав опису. Вже катаємось більше двох місяців, автомобіль ідеальний. Виконав доставку нам під дім. Дякуєм за чесність',ph:'media/rev/mitsubishi.jpg'},
  {n:'Олег Андрійович',a:'KIA',t:['Ввічливий','Актуальні опис/фото','Готовий до перевірок'],x:'Приїжджав, оглядав автомобіль KIA, все відповідає дійсності, купив. Дякую'},
  {n:'Олександр',a:'Hyundai',t:['Рекомендую','Швидко відповідає','Ввічливий','Актуальні опис/фото'],ph:'media/rev/hyundai.jpg'},
@@ -1675,16 +1679,16 @@ document.getElementById('faqList').innerHTML=FAQ.map(f=>`<div class="q reveal"><
 document.querySelectorAll('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,a=q.querySelector('.a'),o=q.classList.toggle('open');a.style.maxHeight=o?a.scrollHeight+'px':0});
 const TICO={'Рекомендую':'<svg viewBox="0 0 24 24"><path d="M7 10v11H3V10zM7 10l4-7c1.7 0 2.7 1.3 2.3 3L13 9h6a2 2 0 0 1 2 2.3l-1.3 7.5A2.5 2.5 0 0 1 17.2 21H7"/></svg>'};
 const tChk='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-const revHTML=r=>`<div class="rev reveal"><div class="rvTop"><div class="ava">${esc(r.n[0])}</div><div class="rvWho"><b>${esc(r.n)}</b><small>Покупець${r.a?' · '+esc(r.a):''} · AUTO.RIA</small></div><div class="rvScore">5.0<span>★</span></div></div><div class="rvTags">${r.t.map(t=>`<span>${TICO[t]||tChk}${esc(t)}</span>`).join('')}</div>${r.x?`<p>«${esc(r.x)}»</p>`:''}${r.ph?`<img class="rvPh" src="${r.ph}" alt="${esc(r.a||'Авто клієнта')}" loading="lazy">`:''}</div>`;
+const revHTML=r=>`<div class="rev reveal"><div class="rvTop"><div class="ava">${esc(r.n[0])}</div><div class="rvWho"><b>${esc(r.n)}</b><small>Покупець${r.a?' · '+esc(r.a):''} · ${r.g?'Google Maps':'AUTO.RIA'}</small></div><div class="rvScore">5.0<span>★</span></div></div>${r.t?`<div class="rvTags">${r.t.map(t=>`<span>${TICO[t]||tChk}${esc(t)}</span>`).join('')}</div>`:''}${r.x?`<p>«${esc(r.x)}»</p>`:''}${r.ph?`<img class="rvPh" src="${r.ph}" alt="${esc(r.a||'Авто клієнта')}" loading="lazy">`:''}</div>`;
 document.getElementById('revList').innerHTML=REVIEWS.map(revHTML).join('');
-if(REVIEWS.length)document.getElementById('homeRevs').innerHTML=REVIEWS.slice(0,3).map(revHTML).join('')+`<a class="revMore" href="#reviews">Всі відгуки (${REVIEWS.length}) →</a>`;
+if(REVIEWS.length)document.getElementById('homeRevs').innerHTML=REVIEWS.filter(r=>r.x).slice(0,3).map(revHTML).join('')+`<a class="revMore" href="#reviews">Всі відгуки (${REVIEWS.length}) →</a>`;
 let stars=5;const rateEl=document.getElementById('rate');
 const paint=()=>[...rateEl.children].forEach((s,i)=>s.classList.toggle('on',i<stars));paint();
 [...rateEl.children].forEach((s,i)=>s.onclick=()=>{stars=i+1;paint()});
 document.getElementById('revForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('revThanks').style.display='block';e.target.reset();stars=5;paint()});
 // Карта: впишіть адресу у MAP_QUERY — на хостингу з'явиться жива Google-карта
-const MAP_QUERY='';
-if(MAP_QUERY&&location.protocol.startsWith('http')){document.getElementById('mapBox').insertAdjacentHTML('afterbegin',`<iframe loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed"></iframe>`);document.getElementById('fAddr').textContent=MAP_QUERY}
+const MAP_QUERY='50.1410625,25.2630625';
+if(MAP_QUERY&&location.protocol.startsWith('http')){document.getElementById('mapBox').insertAdjacentHTML('afterbegin',`<iframe loading="lazy" src="https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&z=16&hl=uk&output=embed"></iframe>`);}
 /* ================= БАЗА ЗАЯВОК (Supabase) ================= */
 // Вставте дані свого проєкту Supabase (Project Settings → API). Поки порожньо — працює демо-режим.
 const SUPABASE_URL='https://oejzgogyycjrghvtgbjq.supabase.co';
